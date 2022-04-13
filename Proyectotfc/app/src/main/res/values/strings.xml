@@ -3,4 +3,24 @@
     <string name="title_perfil">Perfil</string>
     <string name="title_juegos">Juegos</string>
     <string name="title_buscar_personas">Buscar Personas</string>
+    <string name="tv_usuario">Usuario</string>
+    <string name="hint_et_usuario">Introduce un correo</string>
+    <string name="tv_Contraseña">Contraseña</string>
+    <string name="hint_et_contraseña">Introduce Contraseña</string>
+    <string name="tv_registro">¿No eres miembo? Registrate</string>
+    <string name="btn_aceptar">Aceptar</string>
+    <string name="msg_Error">Tienes que rellenar todos los campos</string>
+    <string name="tv_nombre">Introduce tu nombre</string>
+    <string name="et_hint_nombre">Introduce tu nombre</string>
+    <string name="tv_apellido">Introduce tu apellido</string>
+    <string name="et_hint_apellido">Introduce tu apellido</string>
+    <string name="tv_correo">Introduce tu correo</string>
+    <string name="et_hint_correo">Introduce tu correo</string>
+    <string name="tv_telefono">introduce numero de telefono</string>
+    <string name="et_hint_telefono">Introduce numero de telefono</string>
+    <string name="tv_ContraseñaR">Introduce contraseña</string>
+    <string name="et_hint_contraseña">Introduce contraseña</string>
+    <string name="tv_tienes_cuenta">¿Tienes una cuenta? Inicia Sesion</string>
+    <string name="btn_guardarR">Guardar</string>
+    <string name="btn_cancelar">Cancelar</string>
 </resources>
