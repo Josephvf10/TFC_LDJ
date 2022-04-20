@@ -7,147 +7,110 @@
     android:padding="@dimen/margen"
     tools:context=".RegistroActivity">
 
+    <ImageView
+        android:id="@+id/ivRegIcon"
+        android:layout_width="@dimen/lados_iv_reg"
+        android:layout_height="@dimen/lados_iv_reg"
+        android:layout_marginTop="@dimen/top_iv_reg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/tvNombre"
+        android:id="@+id/tvRegTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/sanfrancis"
-        android:text="@string/tv_nombre"
-        android:textSize="@dimen/tmTituloR"
+        app:layout_constraintTop_toBottomOf="@id/ivRegIcon"
+        android:text="@string/tv_reg_txt"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/top_txt_reg"
+        android:textSize="@dimen/tam_txt_reg"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
         />
 
-    <EditText
-        android:id="@+id/etNombre"
+    <LinearLayout
+        android:id="@+id/llDatos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sanfrancis"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombre"
-        android:hint="@string/et_hint_nombre"
         android:layout_marginTop="@dimen/margene"
-        android:inputType="textPersonName|textCapWords"
-        />
-    <TextView
-        android:id="@+id/tvApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_marginTop="@dimen/margene"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre"
-        android:text="@string/tv_apellido"
-        android:textStyle="bold"
-        android:textSize="@dimen/tmTituloR"
-        />
-    <EditText
-        android:id="@+id/etApellido"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvApellido"
-        android:hint="@string/et_hint_apellido"
-        android:layout_marginTop="@dimen/margene"
-        android:inputType="textPersonName|textCapWords"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegTxt"
+        >
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
+            android:hint="@string/et_hint_nombre"
+            android:layout_marginTop="@dimen/margene"
+            android:inputType="textPersonName|textCapWords"
+            />
 
-        />
-    <TextView
-        android:id="@+id/tvCorreo"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margene"
-        app:layout_constraintTop_toBottomOf="@+id/etApellido"
-        android:text="@string/tv_correo"
-        android:textStyle="bold"
-        android:textSize="@dimen/tmTituloR"
-        />
-    <EditText
-        android:id="@+id/etCorreo"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvCorreo"
-        android:hint="@string/et_hint_correo"
-        android:layout_marginTop="@dimen/margene"
-        android:inputType="textEmailAddress"
-        />
-    <TextView
-        android:id="@+id/tvTelefono"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margene"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreo"
-        android:text="@string/tv_telefono"
-        android:textStyle="bold"
-        android:textSize="@dimen/tmTituloR"
-        />
-    <EditText
-        android:id="@+id/etTelefono"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvTelefono"
-        android:hint="@string/et_hint_telefono"
-        android:layout_marginTop="@dimen/margene"
-        android:inputType="phone"
-        />
-    <TextView
-        android:id="@+id/tvContraseñaR"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margene"
-        app:layout_constraintTop_toBottomOf="@+id/etTelefono"
-        android:text="@string/tv_ContraseñaR"
-        android:textStyle="bold"
-        android:textSize="@dimen/tmTituloR"
-        />
-    <EditText
-        android:id="@+id/etContrasenaR"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvContraseñaR"
-        android:hint="@string/et_hint_contraseña"
-        android:layout_marginTop="@dimen/margene"
-        />
-    <TextView
-        android:id="@+id/tvCuentaR"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/sanfrancis"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margen"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasenaR"
-        android:text="@string/tv_tienes_cuenta"
-        android:textSize="@dimen/registro"
-        android:clickable="true"
-        android:focusable="true"
-        android:textStyle="bold"
-        android:transitionName="NewUserTrans"
-        />
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
+            android:hint="@string/et_hint_correo"
+            android:layout_marginTop="@dimen/margene"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
+            android:hint="@string/et_hint_telefono"
+            android:layout_marginTop="@dimen/margene"
+            android:inputType="phone"
+            />
+
+        <EditText
+            android:id="@+id/etContrasenaR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
+            android:hint="@string/et_hint_contraseña"
+            android:layout_marginTop="@dimen/margene"
+            />
+
+        <EditText
+            android:id="@+id/etContrasenaRepR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
+            android:hint="@string/et_hint_contraseña_rep"
+            android:layout_marginTop="@dimen/margene"
+            />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/llBtns"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvCuentaR"
-        android:layout_marginTop="@dimen/margene"
+        android:layout_marginTop="@dimen/llmargen_top"
+        android:layout_marginBottom="@dimen/llmargen_bot"
+        app:layout_constraintBottom_toBottomOf="parent"
         >
+
         <Button
             android:id="@+id/btnGuardarR"
-            android:layout_width="match_parent"
-            android:fontFamily="@font/sanfrancis"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
             android:text="@string/btn_guardarR"
             android:layout_weight="1"
             />
         <Button
             android:id="@+id/btnCancelarR"
-            android:layout_width="match_parent"
-            android:fontFamily="@font/sanfrancis"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sanfrancis"
             android:text="@string/btn_cancelar"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/margen"

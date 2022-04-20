@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "231579031734",
+    "project_id": "gamer-shelf-tfg",
+    "storage_bucket": "gamer-shelf-tfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231579031734:android:4a131002157e3553af2e17",
+        "android_client_info": {
+          "package_name": "com.dam.proyectotfc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231579031734-q5bapmtfpfhcctjfp0r1pe74egod12sf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dam.proyectotfc",
+            "certificate_hash": "073ce348563d0c97a2cc6c64368c774042e610aa"
+          }
+        },
+        {
+          "client_id": "231579031734-rm3bd9bqa3rdodldau0ti4olf40uo713.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQZgfGcdBb5NrW-dBTykkoYBnHuOo10IA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231579031734-rm3bd9bqa3rdodldau0ti4olf40uo713.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,9 +2,15 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="margen">20dp</dimen>
+    <dimen name="margen">16dp</dimen>
     <dimen name="tmTitulo">24sp</dimen>
     <dimen name="registro">17sp</dimen>
     <dimen name="tmTituloR">17sp</dimen>
     <dimen name="margene">7dp</dimen>
+    <dimen name="lados_iv_reg">180dp</dimen>
+    <dimen name="top_iv_reg">28dp</dimen>
+    <dimen name="top_txt_reg">26dp</dimen>
+    <dimen name="tam_txt_reg">18sp</dimen>
+    <dimen name="llmargen_bot">16dp</dimen>
+    <dimen name="llmargen_top">24dp</dimen>
 </resources>
