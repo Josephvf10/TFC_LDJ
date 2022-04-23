@@ -11,91 +11,144 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.proyectotfc.model.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvNombre, tvApellido, tvCorreo, tvTelefono,
-            tvContrasenaR, tvCuentaR;
     Button btnGuardarR;
     Button btnCancelR;
-    EditText etNombre, etApellido, etCorreo, etTelefono, etContasena;
-    //DatabaseReference mReference;
+    EditText etNomR;
+    EditText etEmailR;
+    EditText etTelefonoR;
+    EditText etContrasenaR;
+    EditText etContrasenaRepR;
 
-    //FirebaseAuth mAuth;
-    //FirebaseUser fUser;
+    FirebaseAuth fAuth;
+    FirebaseUser fUser;
+    FirebaseDatabase fdb;
+    DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        tvNombre = findViewById(R.id.tvNombre);
-        tvApellido = findViewById(R.id.tvApellido);
-        tvCuentaR = findViewById(R.id.tvCuentaR);
-        tvCorreo = findViewById(R.id.tvCorreo);
-        tvTelefono = findViewById(R.id.tvTelefono);
-        tvContrasenaR = findViewById(R.id.tvContraseñaR);
+        fAuth = FirebaseAuth.getInstance();
+        fUser = fAuth.getCurrentUser();
+        fdb = FirebaseDatabase.getInstance();
+        dbRef = fdb.getReference("usuarios");
 
-        //mReference = FirebaseDatabase.getInstance().getReference();
-        //mAuth = FirebaseAuth.getInstance();
-
-        etNombre = findViewById(R.id.etNombre);
-        etApellido = findViewById(R.id.etApellido);
-        etCorreo = findViewById(R.id.etCorreo);
-        etTelefono = findViewById(R.id.etTelefono);
-        etContasena = findViewById(R.id.etContrasenaR);
+        etNomR = findViewById(R.id.etNombre);
+        etEmailR = findViewById(R.id.etCorreo);
+        etTelefonoR = findViewById(R.id.etTelefono);
+        etContrasenaR = findViewById(R.id.etContrasenaR);
+        etContrasenaRepR = findViewById(R.id.etContrasenaRepR);
 
         btnCancelR = findViewById(R.id.btnCancelarR);
         btnGuardarR = findViewById(R.id.btnGuardarR);
 
         btnCancelR.setOnClickListener(this);
         btnGuardarR.setOnClickListener(this);
-        tvCuentaR.setOnClickListener(this);
 
 
     }
 
     @Override
     public void onClick(View v) {
-        String nombreU = etNombre.getText().toString();
-        String apellidoU = etApellido.getText().toString();
-        String correoU = etCorreo.getText().toString();
-        String telefonoU = etTelefono.getText().toString();
-        String contrasenaU = etContasena.getText().toString();
+        if (v.equals(btnCancelR)) {
+            finish();
+        } else if (v.equals(btnGuardarR))
+            datosRegistro();
 
-        if (v.equals(tvCuentaR)) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        } else if (nombreU.isEmpty() || apellidoU.isEmpty() || contrasenaU.isEmpty() || correoU.isEmpty()) {
-            Toast.makeText(this, R.string.msg_Error, Toast.LENGTH_SHORT).show();
-        } else if (v.equals(btnGuardarR)) {
-            /*mAuth.createUserWithEmailAndPassword(correoU, contrasenaU)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful() && !(contrasenaU.length() < 6)) {
-                                Map<String, Object> subirDatos = new HashMap<>();
+    }
 
-                                subirDatos.put("nombre", nombreU);
-                                subirDatos.put("apellido", apellidoU);
-                                subirDatos.put("correo", correoU);
-                                subirDatos.put("telefono", telefonoU);
-                                subirDatos.put("contraseña", contrasenaU);
+    private void datosRegistro() {
+        String nombre = etNomR.getText().toString();
+        String email = etEmailR.getText().toString();
+        String telefono = etTelefonoR.getText().toString();
+        String contrasena = etContrasenaR.getText().toString();
+        String contrasenaRep = etContrasenaRepR.getText().toString();
 
-                                mReference.child("usuarios").push().setValue(subirDatos);
-                                fUser = mAuth.getCurrentUser();
+        if (!nombre.isEmpty() & !email.isEmpty() & !telefono.isEmpty() & !contrasena.isEmpty()
+                & !contrasena.isEmpty()) {
+            if (!nombre.trim().contains(" ")) {
+                nombre = "";
+                etNomR.setText("");
 
-                                Toast.makeText(PaginaRegistro.this, "REgistrado con exito", Toast.LENGTH_SHORT).show();
-                                finish();
+            } else if (!contrasena.equals(contrasenaRep) | contrasena.length() < 6) {
+                contrasena = "";
+                etContrasenaR.setText("");
+                etContrasenaRepR.setText("");
+                Toast.makeText(RegistroActivity.this,
+                        getString(R.string.msj_contrsena_error),
+                        Toast.LENGTH_SHORT).show();
 
-                            } else {
-                                Toast.makeText(PaginaRegistro.this, "Fracaso absoluto", Toast.LENGTH_SHORT).show();
+            }
+            if (!email.contains("@") || !email.contains(".")) {
+                email = "";
+                etEmailR.setText("");
+                Toast.makeText(RegistroActivity.this,
+                        getString(R.string.msj_email_error),
+                        Toast.LENGTH_SHORT).show();
 
-                            }
-                        }
-                    });*/
+            } else if (telefono.length() != 13 & telefono.length() != 9) {
+                telefono = "";
+                etTelefonoR.setText("");
+                Toast.makeText(RegistroActivity.this,
+                        getString(R.string.msj_tel_comp),
+                        Toast.LENGTH_SHORT).show();
+
+            } else {
+                Usuario user = new Usuario(nombre, telefono, email);
+                registrarUser(email, contrasena, user);
+            }
+
+        } else {
+            Toast.makeText(RegistroActivity.this,
+                    getString(R.string.msj_campo_vacio),
+                    Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    private void registrarUser(String email, String contrasena, Usuario user) {
+        fAuth.createUserWithEmailAndPassword(email, contrasena)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            fUser = fAuth.getCurrentUser();
+                            dbRef.child(user.getNombreCompleto()).setValue(user);
+                            Toast.makeText(RegistroActivity.this,
+                                    getString(R.string.msj_registrado),
+                                    Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(RegistroActivity.this, MainActivity.class);
+                            //adFlags para que al dar atras no retroceda por todos los activity
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Toast.makeText(RegistroActivity.this,
+                                    getString(R.string.msj_ya_registrado),
+                                    Toast.LENGTH_SHORT).show();
+
+                            etNomR.setText("");
+                            etEmailR.setText("");
+                            etTelefonoR.setText("");
+                            etContrasenaR.setText("");
+                            etContrasenaRepR.setText("");
+                        }
+                    }
+                });
     }
 }
