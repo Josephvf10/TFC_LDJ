@@ -27,5 +27,6 @@
     <string name="msj_tel_comp">Telefono incorrecto</string>
     <string name="msj_registrado">Registro completado</string>
     <string name="msj_ya_registrado">Email ya registrado</string>
-    <string name="msj_no_accede">Se tienen que escribir tanto el email como la contraseña</string>
+    <string name="msj_no_accede">Datos erróneos. Por favor compruebelos</string>
+    <string name="btn_cerrar_sesion">Cerrar sesion</string>
 </resources>

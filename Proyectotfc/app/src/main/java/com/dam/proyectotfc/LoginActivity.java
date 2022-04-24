@@ -87,4 +87,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(i);
         finish();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(fAuth.getCurrentUser()!=null){
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
+        }
+    }
 }
