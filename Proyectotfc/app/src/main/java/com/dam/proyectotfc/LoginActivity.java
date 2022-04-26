@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String contrasena = etContraL.getText().toString().trim();
 
         if (email.isEmpty()|| contrasena.isEmpty()) {
-            Toast.makeText(this, R.string.msg_Error, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.msg_Error, Toast.LENGTH_SHORT).show();
         } else {
             fAuth.signInWithEmailAndPassword(email, contrasena)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 loginCompleto();
                             } else {
                                 Toast.makeText(LoginActivity.this,getString(R.string.msj_no_accede),
-                                        Toast.LENGTH_LONG).show();
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         finish();
     }
 
+    @Override
     protected void onStart() {
         super.onStart();
 
