@@ -30,22 +30,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
-
-    <TextView
-        android:id="@+id/tvNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/nav_host_fragment_activity_main"
-        android:textSize="24sp"
-    />
-
-    <Button
-        android:id="@+id/btnCerrarSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_cerrar_sesion"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintLeft_toLeftOf="parent"
-        />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
