@@ -81,7 +81,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
         if (!nombre.isEmpty() & !email.isEmpty() & !telefono.isEmpty() & !contrasena.isEmpty()
                 & !contrasena.isEmpty()) {
-            if (!nombre.trim().contains(" ")) {
+            if (!nombre.trim().contains("")) {
                 nombre = "";
                 etNomR.setText("");
 
@@ -91,7 +91,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 etContrasenaRepR.setText("");
                 Toast.makeText(RegistroActivity.this,
                         getString(R.string.msj_contrsena_error),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
 
             }
             if (!email.contains("@") || !email.contains(".")) {
@@ -99,14 +99,14 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 etEmailR.setText("");
                 Toast.makeText(RegistroActivity.this,
                         getString(R.string.msj_email_error),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
 
             } else if (telefono.length() != 13 & telefono.length() != 9) {
                 telefono = "";
                 etTelefonoR.setText("");
                 Toast.makeText(RegistroActivity.this,
                         getString(R.string.msj_tel_comp),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
 
             } else {
                 Usuario user = new Usuario(nombre, telefono, email);
@@ -116,7 +116,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         } else {
             Toast.makeText(RegistroActivity.this,
                     getString(R.string.msj_campo_vacio),
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
         }
 
     }
@@ -131,7 +131,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                             dbRef.child(user.getNombreCompleto()).setValue(user);
                             Toast.makeText(RegistroActivity.this,
                                     getString(R.string.msj_registrado),
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             Intent i = new Intent(RegistroActivity.this, MainActivity.class);
                             //adFlags para que al dar atras no retroceda por todos los activity
                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -140,7 +140,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                         } else {
                             Toast.makeText(RegistroActivity.this,
                                     getString(R.string.msj_ya_registrado),
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
 
                             etNomR.setText("");
                             etEmailR.setText("");

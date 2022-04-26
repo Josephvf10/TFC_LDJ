@@ -13,4 +13,5 @@
     <dimen name="tam_txt_reg">18sp</dimen>
     <dimen name="llmargen_bot">16dp</dimen>
     <dimen name="llmargen_top">24dp</dimen>
+    <dimen name="margen_fragment">16dp</dimen>
 </resources>

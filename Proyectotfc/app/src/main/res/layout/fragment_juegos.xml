@@ -4,19 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/margen_fragment"
     tools:context=".ui.Juegos.JuegosFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <EditText
+        android:id="@+id/etNombreJuego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="@string/et_hin_nombre_juego"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btnConsultarJuego"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_consultar_juego"
+        app:layout_constraintTop_toBottomOf="@id/etNombreJuego"
+        android:layout_marginTop="@dimen/margen" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvJuegos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnConsultarJuego"
+        android:layout_marginTop="@dimen/margen"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
