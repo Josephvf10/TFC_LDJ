@@ -1,5 +1,6 @@
 package com.dam.proyectotfc.retrofit;
 
+import com.dam.proyectotfc.model.Result;
 import com.dam.proyectotfc.model.Results;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public interface APIRestService {
     public static final String RESOURCES = "game";
     @Headers("content-type: application/json")
     @GET("search/")
-    Call<ArrayList<Results>> getJuegos(@Query("api_key") String key, @Query("format")String format,
-                                       @Query("resources")String resources, @Query("query")String query);
+    Call<Results> getJuegos(@Query("api_key") String key, @Query("format")String format,
+                            @Query("resources")String resources, @Query("query")String query);
 
 }

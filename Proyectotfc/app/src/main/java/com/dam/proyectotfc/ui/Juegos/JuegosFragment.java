@@ -1,5 +1,6 @@
 package com.dam.proyectotfc.ui.Juegos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectotfc.R;
+import com.dam.proyectotfc.model.Result;
 import com.dam.proyectotfc.model.Results;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
@@ -30,9 +32,10 @@ import retrofit2.Retrofit;
 
 
 public class JuegosFragment extends Fragment
-implements View.OnClickListener {
+        implements View.OnClickListener {
 
     private static final String TAG = "FALLO GRAVE";
+    private static final String CLAVE_JUEGO = "JUEGO";
     RecyclerView rvJuegos;
     LinearLayoutManager llm;
     JuegosAdapter adapter;
@@ -62,21 +65,21 @@ implements View.OnClickListener {
         Retrofit r = RetrofitClient.getClient(APIRestService.BASE_URL);
         APIRestService ars = r.create(APIRestService.class);
         if (!etNom.getText().toString().isEmpty()){
-            Call<ArrayList<Results>> call = ars.getJuegos(APIRestService.KEY, APIRestService.FORMAT,
+            Call<Results> call = ars.getJuegos(APIRestService.KEY, APIRestService.FORMAT,
                     APIRestService.RESOURCES, query);
-            call.enqueue(new Callback<ArrayList<Results>>() {
+            call.enqueue(new Callback<Results>() {
                 @Override
-                public void onResponse(Call<ArrayList<Results>> call, Response<ArrayList<Results>> response) {
+                public void onResponse(Call<Results> call, Response<Results> response) {
                     if (!response.isSuccessful()) {
                         Log.i(TAG, "error" + response.code());
                     } else {
-                        ArrayList<Results> juegosRes = response.body();
+                        ArrayList<Result> juegosRes = (ArrayList<Result>) response.body().getResults();
                         cargarRV(juegosRes);
                     }
                 }
 
                 @Override
-                public void onFailure(Call<ArrayList<Results>> call, Throwable t) {
+                public void onFailure(Call<Results> call, Throwable t) {
                     Log.e(TAG ,"he fallao" + t.toString());
                 }
             });
@@ -86,19 +89,19 @@ implements View.OnClickListener {
 
     }
 
-    private void cargarRV(ArrayList<Results> juegosRes) {
+
+    private void cargarRV(ArrayList<Result> juegosRes) {
         adapter = new JuegosAdapter(juegosRes);
-        /*
         adapter.setListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(JuegosFragment.this, DatosSkinActivity.class);
-                Skins skinsD = skinRes.get(rvSkins.getChildAdapterPosition(v));
-                i.putExtra(CLAVE_SKIN, skinsD.getIdentifier());
-                startActivity(i);
+                //Intent i = new Intent(getContext(), DatosJuegoActivity.class);
+                Result juegoD = juegosRes.get(rvJuegos.getChildAdapterPosition(v));
+                //i.putExtra(CLAVE_JUEGO, juegoD.getGuid());
+                //startActivity(i);
             }
         });
-         */
         rvJuegos.setAdapter(adapter);
     }
+
 }

@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dam.proyectotfc.R;
-import com.dam.proyectotfc.model.Results;
+import com.dam.proyectotfc.model.Result;
 
 import java.util.ArrayList;
 
 public class JuegosAdapter extends RecyclerView.Adapter<JuegosAdapter.JuegosVH>
-implements View.OnClickListener{
+        implements View.OnClickListener{
 
-    private ArrayList<Results> datos;
+    private ArrayList<Result> datos;
     private View.OnClickListener listener;
 
-    public JuegosAdapter(ArrayList<Results> datos) {
+    public JuegosAdapter(ArrayList<Result> datos) {
         this.datos = datos;
     }
 
@@ -42,6 +42,7 @@ implements View.OnClickListener{
     public void onBindViewHolder(@NonNull JuegosVH holder, int position) {
         holder.bindJuegos(datos.get(position));
     }
+
 
     @Override
     public int getItemCount() {
@@ -66,10 +67,10 @@ implements View.OnClickListener{
             tvDeck = itemView.findViewById(R.id.tvResumenJuego);
         }
 
-        public void bindJuegos(Results resultado) {
-            Glide.with(ivPort.getContext()).load(resultado.getResults().get(datos.size()).getImage().getMediumUrl()).into(ivPort);
-            tvNom.setText(resultado.getResults().get(datos.size()).getName());
-            tvDeck.setText(resultado.getResults().get(datos.size()).getDeck());
+        public void bindJuegos(Result resultado) {
+            Glide.with(ivPort.getContext()).load(resultado.getImage().getMediumUrl()).into(ivPort);
+            tvNom.setText(resultado.getName());
+            tvDeck.setText(resultado.getDeck());
         }
     }
 }

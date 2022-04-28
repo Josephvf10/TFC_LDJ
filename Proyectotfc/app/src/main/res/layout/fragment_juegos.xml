@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/et_hin_nombre_juego"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/btnConsultarJuego"
