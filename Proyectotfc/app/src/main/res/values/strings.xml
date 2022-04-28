@@ -32,4 +32,7 @@
     <string name="btn_consultar_juego">Consultar</string>
     <string name="msg_no_name">Tienes que poner el nombre de un juego</string>
     <string name="btn_cerrar_sesion">Cerrar Sesion</string>
+    <string name="tv_genero_juego_detalle">Género: %1$s</string>
+    <string name="tv_plataformas_juego_detalle">Plataformas: %1$s</string>
+    <string name="btn_volver">Volver</string>
 </resources>

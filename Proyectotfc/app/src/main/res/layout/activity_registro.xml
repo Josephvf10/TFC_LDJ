@@ -75,6 +75,7 @@
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_contraseña"
             android:layout_marginTop="@dimen/margene"
+            android:inputType="textPassword"
             />
 
         <EditText
@@ -84,6 +85,7 @@
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_contraseña_rep"
             android:layout_marginTop="@dimen/margene"
+            android:inputType="textPassword"
             />
 
     </LinearLayout>

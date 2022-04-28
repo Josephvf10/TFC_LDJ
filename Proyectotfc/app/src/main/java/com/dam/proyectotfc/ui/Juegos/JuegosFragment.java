@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dam.proyectotfc.DatosJuegoActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Result;
 import com.dam.proyectotfc.model.Results;
@@ -35,7 +36,7 @@ public class JuegosFragment extends Fragment
         implements View.OnClickListener {
 
     private static final String TAG = "FALLO GRAVE";
-    private static final String CLAVE_JUEGO = "JUEGO";
+    public static final String CLAVE_JUEGO = "JUEGO";
     RecyclerView rvJuegos;
     LinearLayoutManager llm;
     JuegosAdapter adapter;
@@ -95,10 +96,10 @@ public class JuegosFragment extends Fragment
         adapter.setListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent i = new Intent(getContext(), DatosJuegoActivity.class);
+                Intent i = new Intent(getContext(), DatosJuegoActivity.class);
                 Result juegoD = juegosRes.get(rvJuegos.getChildAdapterPosition(v));
-                //i.putExtra(CLAVE_JUEGO, juegoD.getGuid());
-                //startActivity(i);
+                i.putExtra(CLAVE_JUEGO, juegoD.getGuid());
+                startActivity(i);
             }
         });
         rvJuegos.setAdapter(adapter);
