@@ -1,13 +1,16 @@
 
 package com.dam.proyectotfc.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Result {
+public class JuegosBusqueda implements Parcelable {
 
     @SerializedName("aliases")
     @Expose
@@ -241,4 +244,13 @@ public class Result {
         this.resourceType = resourceType;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+    }
 }

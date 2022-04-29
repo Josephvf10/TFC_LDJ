@@ -4,29 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/margen_fragment"
     tools:context=".ui.Juegos.JuegosFragment">
 
-    <EditText
-        android:id="@+id/etNombreJuego"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/et_hin_nombre_juego"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <Button
-        android:id="@+id/btnConsultarJuego"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_consultar_juego"
-        app:layout_constraintTop_toBottomOf="@id/etNombreJuego"
-        android:layout_marginTop="@dimen/margen" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvJuegos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btnConsultarJuego"
-        android:layout_marginTop="@dimen/margen"/>
+  <FrameLayout
+      android:id="@+id/flJuegos"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

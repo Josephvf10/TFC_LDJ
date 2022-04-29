@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoTfc">
         <activity
-            android:name=".DatosJuegoActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegistroActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

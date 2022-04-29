@@ -11,7 +11,6 @@
         android:id="@+id/ivRegIcon"
         android:layout_width="@dimen/lados_iv_reg"
         android:layout_height="@dimen/lados_iv_reg"
-        android:layout_marginTop="@dimen/top_iv_reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

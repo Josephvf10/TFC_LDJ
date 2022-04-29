@@ -11,17 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dam.proyectotfc.R;
-import com.dam.proyectotfc.model.Result;
+import com.dam.proyectotfc.model.JuegosBusqueda;
 
 import java.util.ArrayList;
 
 public class JuegosAdapter extends RecyclerView.Adapter<JuegosAdapter.JuegosVH>
         implements View.OnClickListener{
 
-    private ArrayList<Result> datos;
+    private ArrayList<JuegosBusqueda> datos;
     private View.OnClickListener listener;
 
-    public JuegosAdapter(ArrayList<Result> datos) {
+    public JuegosAdapter(ArrayList<JuegosBusqueda> datos) {
         this.datos = datos;
     }
 
@@ -67,7 +67,7 @@ public class JuegosAdapter extends RecyclerView.Adapter<JuegosAdapter.JuegosVH>
             tvDeck = itemView.findViewById(R.id.tvResumenJuego);
         }
 
-        public void bindJuegos(Result resultado) {
+        public void bindJuegos(JuegosBusqueda resultado) {
             Glide.with(ivPort.getContext()).load(resultado.getImage().getMediumUrl()).into(ivPort);
             tvNom.setText(resultado.getName());
             tvDeck.setText(resultado.getDeck());

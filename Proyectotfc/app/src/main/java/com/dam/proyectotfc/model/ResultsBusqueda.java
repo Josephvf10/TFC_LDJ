@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Results {
+public class ResultsBusqueda {
 
     @SerializedName("error")
     @Expose
@@ -28,7 +28,7 @@ public class Results {
     private Integer statusCode;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<JuegosBusqueda> results = null;
     @SerializedName("version")
     @Expose
     private String version;
@@ -81,11 +81,11 @@ public class Results {
         this.statusCode = statusCode;
     }
 
-    public List<Result> getResults() {
+    public List<JuegosBusqueda> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<JuegosBusqueda> results) {
         this.results = results;
     }
 
