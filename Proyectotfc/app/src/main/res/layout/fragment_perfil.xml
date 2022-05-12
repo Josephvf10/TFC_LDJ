@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Perfil.PerfilFragment">
+    tools:context=".ui.Perfil.PerfilFragment"
+    android:padding="@dimen/margen">
 
     <TextView
         android:id="@+id/tvNombre"
@@ -14,11 +15,12 @@
         android:textSize="24sp"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_cerrar_sesion"
         app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        android:background="@drawable/button_desing"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

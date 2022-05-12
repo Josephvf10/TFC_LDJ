@@ -7,6 +7,7 @@
     <dimen name="registro">17sp</dimen>
     <dimen name="tmTituloR">17sp</dimen>
     <dimen name="margene">7dp</dimen>
+    <dimen name="margenR">20dp</dimen>
     <dimen name="lados_iv_reg">180dp</dimen>
     <dimen name="top_iv_reg">28dp</dimen>
     <dimen name="top_txt_reg">26dp</dimen>
