@@ -1,5 +1,7 @@
 package com.dam.proyectotfc.ui.Juegos;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +24,11 @@ import com.dam.proyectotfc.model.Platform;
 import com.dam.proyectotfc.model.ResultsDetalles;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -29,7 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class DatosJuegoFragment extends Fragment {
+public class DatosJuegoFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "FALLO";
     TextView tvNombre;
@@ -38,9 +46,15 @@ public class DatosJuegoFragment extends Fragment {
     TextView tvGen;
     TextView tvPlat;
     String juegoGuid;
-    Button btnVolver;
-    String genero;
-    String plataforma;
+    FloatingActionButton btnEstadoJuego;
+    String genero = "";
+    String plataforma = "";
+    RadioButton rdbJug, rdbCom, rdbAba, rdbOlv;
+
+    FirebaseDatabase fdb;
+    DatabaseReference dbRef;
+    FirebaseAuth fAuth;
+    FirebaseUser user;
 
     public DatosJuegoFragment() {
     }
@@ -63,6 +77,18 @@ public class DatosJuegoFragment extends Fragment {
         tvGen = v.findViewById(R.id.tvGeneroJuegoDetalle);
         tvPlat = v.findViewById(R.id.tvPlataformasJuegoDetalle);
         ivPortada = v.findViewById(R.id.ivPortadaJuegoDetalle);
+        btnEstadoJuego = v.findViewById(R.id.fabEstadoJuego);
+        btnEstadoJuego.setOnClickListener(this);
+        rdbJug = v.findViewById(R.id.rdbJugado);
+        rdbCom = v.findViewById(R.id.rdbCompletado);
+        rdbAba = v.findViewById(R.id.rdbAbandonado);
+        rdbOlv = v.findViewById(R.id.rdbOlvidado);
+
+        fAuth = FirebaseAuth.getInstance();
+        user = fAuth.getCurrentUser();
+        fdb = FirebaseDatabase.getInstance();
+        dbRef = fdb.getReference();
+
 
         Retrofit r = RetrofitClient.getClient(APIRestService.BASE_URL);
         APIRestService ars = r.create(APIRestService.class);
@@ -86,11 +112,11 @@ public class DatosJuegoFragment extends Fragment {
                        tvDes.setText(juegoD.getDescription());
                    }
                     for (Genre gen: juegoD.getGenres()) {
-                        genero += gen.getName();
+                        genero += gen.getName() + "\t";
                     }
                     tvGen.setText(String.format(getResources().getString(R.string.tv_genero_juego_detalle),genero));
                     for (Platform plat: juegoD.getPlatforms()) {
-                        plataforma += plat.getName();
+                        plataforma += plat.getName() + "\t";
                     }
                     tvPlat.setText(String.format(getResources().getString(R.string.tv_plataformas_juego_detalle),plataforma));
                 }
@@ -103,5 +129,47 @@ public class DatosJuegoFragment extends Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void onClick(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_estado_layout, null);
+        builder.setView(v);
+        builder.setTitle(R.string.title_estado_juego_dialog);
+        builder.setPositiveButton(R.string.dialog_ok,
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (view.getId() == R.id.rdgEstadoJuegos) {
+                    validar();
+                }
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(R.string.dialog_ok_no,
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
+
+    }
+
+    private void validar() {
+        if (rdbJug.isChecked()){
+            dbRef.child("usuarios").child(user.getUid()).child("listaJugados").setValue("hola");
+
+        } else if (rdbCom.isChecked()) {
+
+        } else if (rdbAba.isChecked()) {
+
+        } else if (rdbOlv.isChecked()){
+
+        }
     }
 }

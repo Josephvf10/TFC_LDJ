@@ -20,7 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +35,10 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     EditText etTelefonoR;
     EditText etContrasenaR;
     EditText etContrasenaRepR;
+    List listaCom = Arrays.asList(new String[]{"0"});
+    List listaJug = Arrays.asList(new String[]{"0"});
+    List listaMed = Arrays.asList(new String[]{"0"});
+    List listaOlv = Arrays.asList(new String[]{"0"});
 
     FirebaseAuth fAuth;
     FirebaseUser fUser;
@@ -109,7 +116,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                         Toast.LENGTH_LONG).show();
 
             } else {
-                Usuario user = new Usuario(nombre, telefono, email);
+                Usuario user = new Usuario(nombre, telefono, email, listaJug, listaCom, listaMed, listaOlv);
                 registrarUser(email, contrasena, user);
             }
 

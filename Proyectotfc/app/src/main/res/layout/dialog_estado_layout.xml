@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margen">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_info_juego_estado"/>
+
+    <RadioGroup
+        android:id="@+id/rdgEstadoJuegos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/rdbJugado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/rdb_jugado"/>
+        <RadioButton
+            android:id="@+id/rdbCompletado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/rdb_completado"/>
+        <RadioButton
+            android:id="@+id/rdbAbandonado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/rdb_abandono"/>
+        <RadioButton
+            android:id="@+id/rdbOlvidado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/rdb_olvido"/>
+    </RadioGroup>
+
+</LinearLayout>
