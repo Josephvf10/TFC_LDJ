@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".ui.Juegos.JuegosInfoFragment">
 
     <LinearLayout
@@ -17,14 +18,18 @@
             android:id="@+id/etNombreJuego"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/et_hin_nombre_juego" />
+            android:hint="@string/et_hin_nombre_juego"
+            android:background="@drawable/et_desing"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConsultarJuego"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_consultar_juego"
-            android:layout_marginTop="@dimen/margen" />
+            android:layout_marginTop="@dimen/margen"
+            android:background="@drawable/button_desing"
+            android:text="@string/btn_consultar_juego" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvJuegos"

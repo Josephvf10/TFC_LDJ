@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:padding="@dimen/margen"
     tools:context=".RegistroActivity">
 
@@ -13,7 +14,8 @@
         android:layout_height="@dimen/lados_iv_reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo_prueba"/>
 
     <TextView
         android:id="@+id/tvRegTxt"
@@ -43,7 +45,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_nombre"
-            android:layout_marginTop="@dimen/margene"
+            android:layout_marginTop="@dimen/margenR"
+            android:background="@drawable/et_desing"
             android:inputType="textPersonName|textCapWords"
             />
 
@@ -53,7 +56,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_correo"
-            android:layout_marginTop="@dimen/margene"
+            android:layout_marginTop="@dimen/margenR"
+            android:background="@drawable/et_desing"
             android:inputType="textEmailAddress"
             />
 
@@ -63,7 +67,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_telefono"
-            android:layout_marginTop="@dimen/margene"
+            android:layout_marginTop="@dimen/margenR"
+            android:background="@drawable/et_desing"
             android:inputType="phone"
             />
 
@@ -73,7 +78,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_contraseña"
-            android:layout_marginTop="@dimen/margene"
+            android:layout_marginTop="@dimen/margenR"
+            android:background="@drawable/et_desing"
             android:inputType="textPassword"
             />
 
@@ -83,7 +89,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_contraseña_rep"
-            android:layout_marginTop="@dimen/margene"
+            android:layout_marginTop="@dimen/margenR"
+            android:background="@drawable/et_desing"
             android:inputType="textPassword"
             />
 
@@ -106,6 +113,8 @@
             android:fontFamily="@font/sanfrancis"
             android:text="@string/btn_guardarR"
             android:layout_weight="1"
+            app:backgroundTint="@null"
+            android:background="@drawable/button_desing"
             />
         <Button
             android:id="@+id/btnCancelarR"
@@ -115,6 +124,8 @@
             android:text="@string/btn_cancelar"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/margen"
+            app:backgroundTint="@null"
+            android:background="@drawable/button_desing"
             />
 
     </LinearLayout>

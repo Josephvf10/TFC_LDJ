@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -49,7 +50,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     FloatingActionButton btnEstadoJuego;
     String genero = "";
     String plataforma = "";
-    RadioButton rdbJug, rdbCom, rdbAba, rdbOlv;
+    RadioGroup rdnGroup;
 
     FirebaseDatabase fdb;
     DatabaseReference dbRef;
@@ -79,10 +80,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
         ivPortada = v.findViewById(R.id.ivPortadaJuegoDetalle);
         btnEstadoJuego = v.findViewById(R.id.fabEstadoJuego);
         btnEstadoJuego.setOnClickListener(this);
-        rdbJug = v.findViewById(R.id.rdbJugado);
-        rdbCom = v.findViewById(R.id.rdbCompletado);
-        rdbAba = v.findViewById(R.id.rdbAbandonado);
-        rdbOlv = v.findViewById(R.id.rdbOlvidado);
+
 
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
@@ -141,9 +139,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                if (view.getId() == R.id.rdgEstadoJuegos) {
-                    validar();
-                }
+                validar();
                 dialog.dismiss();
             }
         });
@@ -161,15 +157,37 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     }
 
     private void validar() {
-        if (rdbJug.isChecked()){
-            dbRef.child("usuarios").child(user.getUid()).child("listaJugados").setValue("hola");
+        rdnGroup = getView().findViewById(R.id.rdgEstadoJuegos);
+        rdnGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId) {
+                    case (R.id.rdbJugado):
+                        dbRef.child("usuarios").child(user.getUid()).child("listaJugados").setValue("hola");
+                        break;
+                    case (R.id.rdbAbandonado):
 
-        } else if (rdbCom.isChecked()) {
+                        break;
+                    case (R.id.rdbCompletado):
 
-        } else if (rdbAba.isChecked()) {
+                        break;
 
-        } else if (rdbOlv.isChecked()){
+                    case (R.id.rdbOlvidado):
 
-        }
+                        break;
+                }
+            }
+        });
+                /*if (rdbJug.isChecked()){
+                    dbRef.child("usuarios").child(user.getUid()).child("listaJugados").setValue("hola");
+
+                } else if (rdbCom.isChecked()) {
+
+                } else if (rdbAba.isChecked()) {
+
+                } else if (rdbOlv.isChecked()){
+
+                }
+                 */
     }
 }
