@@ -27,7 +27,7 @@
     <string name="msj_tel_comp">Telefono incorrecto</string>
     <string name="msj_registrado">Registro completado</string>
     <string name="msj_ya_registrado">Email ya registrado</string>
-    <string name="msj_no_accede">Se tienen que escribir tanto el email como la contraseña</string>
+    <string name="msj_no_accede">Datos erróneos. Compruebe los datos</string>
     <string name="et_hin_nombre_juego">Introduce el nombre del juego</string>
     <string name="btn_consultar_juego">Consultar</string>
     <string name="msg_no_name">Tienes que poner el nombre de un juego</string>
