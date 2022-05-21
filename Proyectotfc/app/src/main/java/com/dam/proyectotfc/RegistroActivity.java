@@ -35,10 +35,6 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     EditText etTelefonoR;
     EditText etContrasenaR;
     EditText etContrasenaRepR;
-    List listaCom = Arrays.asList(new String[]{"0"});
-    List listaJug = Arrays.asList(new String[]{"0"});
-    List listaMed = Arrays.asList(new String[]{"0"});
-    List listaOlv = Arrays.asList(new String[]{"0"});
 
     FirebaseAuth fAuth;
     FirebaseUser fUser;
@@ -116,7 +112,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                         Toast.LENGTH_LONG).show();
 
             } else {
-                Usuario user = new Usuario(nombre, telefono, email, listaJug, listaCom, listaMed, listaOlv);
+                Usuario user = new Usuario(nombre, telefono, email);
                 registrarUser(email, contrasena, user);
             }
 
@@ -135,7 +131,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             fUser = fAuth.getCurrentUser();
-                            dbRef.child(user.getNombreCompleto()).setValue(user);
+                            dbRef.child(fUser.getUid()).setValue(user);
                             Toast.makeText(RegistroActivity.this,
                                     getString(R.string.msj_registrado),
                                     Toast.LENGTH_LONG).show();

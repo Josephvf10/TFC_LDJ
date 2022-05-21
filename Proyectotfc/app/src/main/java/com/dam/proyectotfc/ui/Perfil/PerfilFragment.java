@@ -42,11 +42,11 @@ implements View.OnClickListener{
 
         btnCerrar.setOnClickListener(this);
 
-        userInfo();
+        //userInfo();
 
         return v;
     }
-
+/*
     private void userInfo(){
         String id= mAuth.getCurrentUser().getUid();
         mDataBase.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
@@ -66,6 +66,8 @@ implements View.OnClickListener{
         });
     }
 
+
+ */
     @Override
     public void onClick(View view) {
         if(view.equals(btnCerrar)){

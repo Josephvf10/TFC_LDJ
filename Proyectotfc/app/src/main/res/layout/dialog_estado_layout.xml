@@ -5,11 +5,6 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/margen">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_info_juego_estado"/>
-
     <RadioGroup
         android:id="@+id/rdgEstadoJuegos"
         android:layout_width="match_parent"
@@ -19,6 +14,7 @@
             android:id="@+id/rdbJugado"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:checked="true"
             android:text="@string/rdb_jugado"/>
         <RadioButton
             android:id="@+id/rdbCompletado"
@@ -29,7 +25,7 @@
             android:id="@+id/rdbAbandonado"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/rdb_abandono"/>
+            android:text="@string/rdb_a_medias"/>
         <RadioButton
             android:id="@+id/rdbOlvidado"
             android:layout_width="match_parent"

@@ -43,8 +43,9 @@
     <string name="rdb_jugado">Lo he jugado</string>
     <string name="tv_info_juego_estado">Elige el estado del videojuego</string>
     <string name="rdb_completado">Lo he completado</string>
-    <string name="rdb_abandono">Lo he abandonado</string>
+    <string name="rdb_a_medias">Lo he dejado a medias</string>
     <string name="rdb_olvido">Lo he olvidado</string>
     <string name="dialog_ok">Aceptar</string>
     <string name="dialog_ok_no">Cancelar</string>
+    <string name="msj_juego_est">Se ha guardado el estado del juego con exito</string>
 </resources>

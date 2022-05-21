@@ -76,6 +76,42 @@ public class JuegosBusqueda implements Parcelable {
     @Expose
     private String resourceType;
 
+    protected JuegosBusqueda(Parcel in) {
+        aliases = in.readString();
+        apiDetailUrl = in.readString();
+        dateAdded = in.readString();
+        dateLastUpdated = in.readString();
+        deck = in.readString();
+        description = in.readString();
+        guid = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        if (in.readByte() == 0) {
+            numberOfUserReviews = null;
+        } else {
+            numberOfUserReviews = in.readInt();
+        }
+        originalReleaseDate = in.readString();
+        siteDetailUrl = in.readString();
+        resourceType = in.readString();
+    }
+
+    public static final Creator<JuegosBusqueda> CREATOR = new Creator<JuegosBusqueda>() {
+        @Override
+        public JuegosBusqueda createFromParcel(Parcel in) {
+            return new JuegosBusqueda(in);
+        }
+
+        @Override
+        public JuegosBusqueda[] newArray(int size) {
+            return new JuegosBusqueda[size];
+        }
+    };
+
     public String getAliases() {
         return aliases;
     }
@@ -251,6 +287,28 @@ public class JuegosBusqueda implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeString(aliases);
+        parcel.writeString(apiDetailUrl);
+        parcel.writeString(dateAdded);
+        parcel.writeString(dateLastUpdated);
+        parcel.writeString(deck);
+        parcel.writeString(description);
+        parcel.writeString(guid);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(name);
+        if (numberOfUserReviews == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(numberOfUserReviews);
+        }
+        parcel.writeString(originalReleaseDate);
+        parcel.writeString(siteDetailUrl);
+        parcel.writeString(resourceType);
     }
 }

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -15,23 +16,31 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dam.proyectotfc.R;
+import com.dam.proyectotfc.RegistroActivity;
 import com.dam.proyectotfc.model.Genre;
 import com.dam.proyectotfc.model.JuegoDetalles;
 import com.dam.proyectotfc.model.JuegosBusqueda;
 import com.dam.proyectotfc.model.Platform;
 import com.dam.proyectotfc.model.ResultsDetalles;
+import com.dam.proyectotfc.model.Usuario;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,12 +59,14 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     FloatingActionButton btnEstadoJuego;
     String genero = "";
     String plataforma = "";
+    RadioButton rdbJug, rdbCom, rdbAba, rdbOlv;
     RadioGroup rdnGroup;
 
     FirebaseDatabase fdb;
     DatabaseReference dbRef;
     FirebaseAuth fAuth;
-    FirebaseUser user;
+    FirebaseUser fUser;
+    ResultsDetalles juegoD;
 
     public DatosJuegoFragment() {
     }
@@ -66,6 +77,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         View v = inflater
                 .inflate(R.layout.fragment_datos_juego, container, false);
+
 
         Bundle bundle = this.getArguments();
 
@@ -82,11 +94,10 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
         btnEstadoJuego.setOnClickListener(this);
 
 
-        fAuth = FirebaseAuth.getInstance();
-        user = fAuth.getCurrentUser();
         fdb = FirebaseDatabase.getInstance();
-        dbRef = fdb.getReference();
-
+        dbRef = fdb.getReference("usuarios");
+        fAuth = FirebaseAuth.getInstance();
+        fUser = fAuth.getCurrentUser();
 
         Retrofit r = RetrofitClient.getClient(APIRestService.BASE_URL);
         APIRestService ars = r.create(APIRestService.class);
@@ -101,7 +112,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
                     Log.i(TAG, "error" + response.code());
                 } else {
 
-                   ResultsDetalles juegoD = response.body().getResults();
+                   juegoD = response.body().getResults();
                    tvNombre.setText(juegoD.getName());
                    Glide.with(ivPortada.getContext()).load(juegoD.getImage().getMediumUrl()).into(ivPortada);
                    if (juegoD.getDescription() == null) {
@@ -126,15 +137,21 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
             }
         });
 
+
         return v;
     }
 
     @Override
     public void onClick(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_estado_layout, null);
-        builder.setView(v);
+        View viewD = getActivity().getLayoutInflater().inflate(R.layout.dialog_estado_layout, null);
+        builder.setView(viewD);
         builder.setTitle(R.string.title_estado_juego_dialog);
+        rdnGroup = viewD.findViewById(R.id.rdgEstadoJuegos);
+        rdbJug = viewD.findViewById(R.id.rdbJugado);
+        rdbCom = viewD.findViewById(R.id.rdbCompletado);
+        rdbAba = viewD.findViewById(R.id.rdbAbandonado);
+        rdbOlv = viewD.findViewById(R.id.rdbOlvidado);
         builder.setPositiveButton(R.string.dialog_ok,
                 new DialogInterface.OnClickListener() {
             @Override
@@ -157,37 +174,16 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     }
 
     private void validar() {
-        rdnGroup = getView().findViewById(R.id.rdgEstadoJuegos);
-        rdnGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId) {
-                    case (R.id.rdbJugado):
-                        dbRef.child("usuarios").child(user.getUid()).child("listaJugados").setValue("hola");
-                        break;
-                    case (R.id.rdbAbandonado):
-
-                        break;
-                    case (R.id.rdbCompletado):
-
-                        break;
-
-                    case (R.id.rdbOlvidado):
-
-                        break;
-                }
-            }
-        });
-                /*if (rdbJug.isChecked()){
-                    dbRef.child("usuarios").child(user.getUid()).child("listaJugados").setValue("hola");
-
-                } else if (rdbCom.isChecked()) {
-
-                } else if (rdbAba.isChecked()) {
-
-                } else if (rdbOlv.isChecked()){
-
-                }
-                 */
+        String id = fUser.getUid();
+        if (rdbJug.isChecked()) {
+            dbRef.child(id).child("listaJugados").setValue(juegoGuid);
+        } else if (rdbCom.isChecked()) {
+            dbRef.child(id).child("listaCompletados").setValue(juegoGuid);
+        } else if (rdbAba.isChecked()) {
+            dbRef.child(id).child("listaMedias").setValue(juegoGuid);
+        } else if (rdbOlv.isChecked()) {
+            dbRef.child(id).child("listaOlvidados").setValue(juegoGuid);
+        }
+        Toast.makeText(getContext(), getString(R.string.msj_juego_est), Toast.LENGTH_LONG).show();
     }
 }
