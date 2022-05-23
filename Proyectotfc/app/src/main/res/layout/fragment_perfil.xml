@@ -7,20 +7,59 @@
     tools:context=".ui.Perfil.PerfilFragment"
     android:padding="@dimen/margen">
 
-    <TextView
-        android:id="@+id/tvNombre"
+    <LinearLayout
+        android:id="@+id/llPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="24sp"
-        />
+        android:orientation="horizontal">
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenido"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#677F8E"/>
+
+            <TextView
+                android:id="@+id/tvJuegos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tus Juegos:"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#677F8E"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivPortadaJuego"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/profile"/>
+
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margen"
         android:text="@string/btn_cerrar_sesion"
-        app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        app:layout_constraintTop_toBottomOf="@id/llPerfil"
         android:background="@drawable/button_desing"
+
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

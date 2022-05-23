@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margen">
-
-    <ImageView
-        android:id="@+id/ivPortadaJuego"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"/>
+    android:layout_margin="8dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    android:backgroundTint="#677F8E">
 
     <LinearLayout
-        android:id="@+id/llBloqueJuegos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvNombreJuego"
+        <ImageView
+            android:id="@+id/ivPortadaJuego"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+
+        <LinearLayout
+            android:id="@+id/llBloqueJuegos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            />
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
 
-        <TextView
-            android:id="@+id/tvResumenJuego"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
-            />
+            <TextView
+                android:id="@+id/tvNombreJuego"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/tvResumenJuego"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
