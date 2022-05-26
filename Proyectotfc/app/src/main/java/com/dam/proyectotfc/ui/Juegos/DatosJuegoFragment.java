@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,14 +119,14 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
                    if (juegoD.getDescription() == null) {
                        tvDes.setText(R.string.no_descripcion);
                    }else {
-                       tvDes.setText(juegoD.getDescription());
+                       tvDes.setText(Html.fromHtml(juegoD.getDescription()));
                    }
                     for (Genre gen: juegoD.getGenres()) {
                         genero += gen.getName() + "\t";
                     }
                     tvGen.setText(String.format(getResources().getString(R.string.tv_genero_juego_detalle),genero));
                     for (Platform plat: juegoD.getPlatforms()) {
-                        plataforma += plat.getName() + "\t";
+                        plataforma += plat.getName() + ",\t";
                     }
                     tvPlat.setText(String.format(getResources().getString(R.string.tv_plataformas_juego_detalle),plataforma));
                 }
