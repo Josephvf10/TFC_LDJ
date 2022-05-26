@@ -4,7 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.BuscarPersonas.BuscarPersonasFragment">
+    tools:context=".ui.BuscarPersonas.BuscarPersonasFragment"
+    android:padding="@dimen/margen">
+
+
+    <LinearLayout
+        android:id="@+id/llBusquedaPersonas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margen">
+
+        <EditText
+            android:id="@+id/etBusquedaPersonas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_et_personas"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/btnBuscarPersonas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_buscar_personas"
+            android:layout_weight="3"
+            />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBuscarPersonas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margen"
+        app:layout_constraintTop_toBottomOf="@id/llBusquedaPersonas"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

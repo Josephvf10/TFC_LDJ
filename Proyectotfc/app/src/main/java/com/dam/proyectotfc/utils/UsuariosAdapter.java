@@ -11,19 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Usuario;
-import com.google.firebase.auth.FirebaseAuth;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class UsariosAdapter extends RecyclerView.Adapter<UsariosAdapter.UsuariosVH> implements View.OnClickListener {
+public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.UsuariosVH> implements View.OnClickListener {
 
     private List<Usuario> listaUsuarios;
     private View.OnClickListener listener;
     private Context context;
 
-    public UsariosAdapter(List<Usuario> listaUsuarios, Context context) {
+    public UsuariosAdapter(List<Usuario> listaUsuarios, Context context) {
         this.listaUsuarios = listaUsuarios;
         this.context = context;
     }
