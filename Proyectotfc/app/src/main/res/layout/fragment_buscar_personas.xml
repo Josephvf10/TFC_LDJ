@@ -16,7 +16,17 @@
         android:layout_marginTop="@dimen/margen"
         tools:ignore="MissingConstraints">
 
-        <Soci
+        <EditText
+            android:id="@+id/etBusquedaPersonas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_et_personas"
+            android:layout_weight="1"
+            android:background="@drawable/et_desing"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/margen"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBuscarPersonas"
