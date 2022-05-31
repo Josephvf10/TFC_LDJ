@@ -48,4 +48,15 @@
     <string name="dialog_ok">Aceptar</string>
     <string name="dialog_ok_no">Cancelar</string>
     <string name="msj_juego_est">Se ha guardado el estado del juego con exito</string>
+    <string name="btn_buscar_personas">Buscar</string>
+    <string name="hint_et_personas">Busca a un usuario</string>
+    <string name="no_personas">No se han encontrado resultados</string>
+    <string name="msg_Error_db">Error DB. Cancelado</string>
+    <string name="email_du">Email: %1$s</string>
+    <string name="telef_du">Teléfono: %1$s</string>
+    <string name="btn_seguir">Seguir</string>
+    <string name="txt_tv_completados">Juegos terminados al 100%</string>
+    <string name="txt_tv_jugadoss">Juegos completados</string>
+    <string name="txt_tv_medias">Juegos a medias</string>
+    <string name="txt_tv_olivdado">Juegos abandonados</string>
 </resources>

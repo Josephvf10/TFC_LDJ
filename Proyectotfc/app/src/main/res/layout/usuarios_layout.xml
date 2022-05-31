@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margen"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    android:backgroundTint="#677F8E">
+
+    <LinearLayout
+        android:id="@+id/llBloqueUsarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/margen"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/tvNombreUsuarioBloque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginRight="@dimen/margen"
+            android:layout_marginLeft="@dimen/margen"
+            />
+
+        <LinearLayout
+            android:id="@+id/llBloqueUsarios2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+
+            <TextView
+                android:id="@+id/tvEmailUsuarioBloque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginRight="@dimen/margen"
+                android:layout_marginLeft="@dimen/margen"
+                android:layout_weight="1"
+                />
+
+
+            <TextView
+                android:id="@+id/tvTelefonoUsuarioBloque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginRight="@dimen/margen"
+                android:layout_marginLeft="@dimen/margen"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
