@@ -12,15 +12,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dam.proyectotfc.DatosPersonaActivity;
 import com.dam.proyectotfc.R;
-import com.dam.proyectotfc.RegistroActivity;
-import com.dam.proyectotfc.model.JuegosBusqueda;
 import com.dam.proyectotfc.model.Usuario;
-import com.dam.proyectotfc.ui.Juegos.DatosJuegoFragment;
 import com.dam.proyectotfc.utils.UsuariosAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,7 +66,7 @@ public class BuscarPersonasFragment extends Fragment implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Usuario usuario = listaUsuarios.get(rv.getChildAdapterPosition(v));
-                Intent i = new Intent(getContext().getApplicationContext(), DatosPersonaFragment.class);
+                Intent i = new Intent(getContext().getApplicationContext(), DatosPersonaActivity.class);
                 i.putExtra(CLAVE_USUARIO, usuario.getEmail());
                 startActivity(i);
             }
