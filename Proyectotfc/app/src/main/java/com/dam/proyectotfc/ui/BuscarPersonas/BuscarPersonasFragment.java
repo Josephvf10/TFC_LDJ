@@ -1,5 +1,6 @@
 package com.dam.proyectotfc.ui.BuscarPersonas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,12 +12,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.RegistroActivity;
+import com.dam.proyectotfc.model.JuegosBusqueda;
 import com.dam.proyectotfc.model.Usuario;
+import com.dam.proyectotfc.ui.Juegos.DatosJuegoFragment;
 import com.dam.proyectotfc.utils.UsuariosAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +33,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class BuscarPersonasFragment extends Fragment implements View.OnClickListener {
+
+    public static final String CLAVE_USUARIO = "USUARIO";
 
     private List<Usuario> listaUsuarios;
     private UsuariosAdapter adapter;
@@ -50,13 +56,25 @@ public class BuscarPersonasFragment extends Fragment implements View.OnClickList
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         listaUsuarios = new ArrayList<>();
-        adapter = new UsuariosAdapter(listaUsuarios, getContext(), true);
-        rv.setOnClickListener(this);
-        rv.setAdapter(adapter);
+        cargarRV();
 
         leerUsuarios();
 
         return view;
+    }
+
+    private void cargarRV() {
+        adapter = new UsuariosAdapter(listaUsuarios, getContext(), true);
+        adapter.setListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Usuario usuario = listaUsuarios.get(rv.getChildAdapterPosition(v));
+                Intent i = new Intent(getContext().getApplicationContext(), DatosPersonaFragment.class);
+                i.putExtra(CLAVE_USUARIO, usuario.getEmail());
+                startActivity(i);
+            }
+        });
+        rv.setAdapter(adapter);
     }
 
     private void leerUsuarios() {
