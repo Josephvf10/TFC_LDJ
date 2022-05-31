@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margen"
     android:animateLayoutChanges="true"
-    app:cardCornerRadius="30dp"
+    app:cardCornerRadius="3dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
     android:backgroundTint="#677F8E">
@@ -29,15 +29,36 @@
             android:layout_marginLeft="@dimen/margen"
             />
 
-        <TextView
-            android:id="@+id/tvEmailUsuarioBloque"
+        <LinearLayout
+            android:id="@+id/llBloqueUsarios2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="@dimen/margen"
-            android:layout_marginLeft="@dimen/margen"
-            />
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+
+            <TextView
+                android:id="@+id/tvEmailUsuarioBloque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginRight="@dimen/margen"
+                android:layout_marginLeft="@dimen/margen"
+                android:layout_weight="1"
+                />
+
+
+            <TextView
+                android:id="@+id/tvTelefonoUsuarioBloque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginRight="@dimen/margen"
+                android:layout_marginLeft="@dimen/margen"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 

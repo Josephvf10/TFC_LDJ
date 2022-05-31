@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectotfc.R;
@@ -24,6 +25,10 @@ public class BuscarPersonasFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buscar_personas,container,false);
+
+        rv = view.findViewById(R.id.rvBuscarPersonas);
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }

@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Usuario;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.List;
@@ -19,11 +22,15 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
 
     private List<Usuario> listaUsuarios;
     private View.OnClickListener listener;
+    private boolean isFragment;
     private Context context;
 
-    public UsuariosAdapter(List<Usuario> listaUsuarios, Context context) {
+    private FirebaseUser firebaseUser;
+
+    public UsuariosAdapter(List<Usuario> listaUsuarios, Context context, boolean isFragment) {
         this.listaUsuarios = listaUsuarios;
         this.context = context;
+        this.isFragment = isFragment;
     }
 
     public void setListener(View.OnClickListener listener) {
@@ -33,16 +40,24 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
     @NonNull
     @Override
     public UsuariosVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.usuarios_layout, parent, false);
-        v.setOnClickListener(listener);
-        UsuariosVH vh = new UsuariosVH(v);
-        return vh;
+        View view = LayoutInflater.from(context).inflate(R.layout.usuarios_layout, parent, false);
+        view.setOnClickListener(listener);
+        return new UsuariosAdapter.UsuariosVH(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UsuariosVH holder, int position) {
-        holder.tvNombreCompleto.setText(listaUsuarios.get(position).getNombreCompleto());
-        holder.tvEmail.setText(listaUsuarios.get(position).getEmail());
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Usuario usuario = listaUsuarios.get(position);
+        holder.tvNombreCompleto.setText(usuario.getNombreCompleto());
+        holder.tvEmail.setText(usuario.getEmail());
+        holder.tvTelefono.setText(usuario.getTelefono());
+
+        //TODO: Método seguir isFollowed(usuario.getEmail(), holder.btnSeguir)
+
+        //TODO: if(usuario.getEmail().equals((firebaseUser.getEmail()))) {}
+
+
     }
 
     @Override
@@ -60,11 +75,13 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.Usuari
     public class UsuariosVH extends RecyclerView.ViewHolder {
         TextView tvNombreCompleto;
         TextView tvEmail;
+        TextView tvTelefono;
 
         public UsuariosVH(@NonNull View itemView) {
             super(itemView);
             tvNombreCompleto = itemView.findViewById(R.id.tvNombreUsuarioBloque);
             tvEmail = itemView.findViewById(R.id.tvEmailUsuarioBloque);
+            tvTelefono = itemView.findViewById(R.id.tvTelefonoUsuarioBloque);
         }
     }
 }
