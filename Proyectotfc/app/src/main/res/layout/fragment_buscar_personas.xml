@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/margen"
         tools:ignore="MissingConstraints">
 
-
+        <Soci
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBuscarPersonas"
