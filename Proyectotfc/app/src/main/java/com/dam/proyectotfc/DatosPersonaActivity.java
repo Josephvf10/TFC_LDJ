@@ -22,6 +22,7 @@ import com.dam.proyectotfc.ui.BuscarPersonas.BuscarPersonasFragment;
 import com.dam.proyectotfc.ui.Juegos.DatosJuegoFragment;
 import com.dam.proyectotfc.utils.JuegosAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +45,7 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
     JuegosAdapter adapterCom, adapterJug, adapterMed, adapterOlv;
     ArrayList<String> juegosCom;
     FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +91,10 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
         rvCompletado.setLayoutManager(llm);
         
         leerJuegCom();
-        cargarRVCom();
+        //cargarRVCom();
         
-
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Seguir").child(firebaseUser.getUid()).child("siguiendo");
 
 
     }
@@ -104,7 +107,7 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for (DataSnapshot snapshot: datasnapshot.getChildren()) {
-                    Usuario usuario = datasnapshot.getValue(Usuario.class);
+                    Usuario usuario = snapshot.getValue(Usuario.class);
                     if(usuario.getEmail().equals(emailUsuario)) {
                         juegosCom = usuario.getJuegosCom();
                     }
@@ -120,7 +123,7 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
         });
     }
 
-    private void cargarRVCom() {
+    /*private void cargarRVCom() {
         adapterCom = new JuegosAdapter(juegosCom);
         adapterCom.setListener(new View.OnClickListener() {
             @Override
@@ -128,7 +131,7 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
                 
             }
         });
-    }
+    }*/
 
     @Override
     public void onClick(View view) {

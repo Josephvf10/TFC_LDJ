@@ -19,6 +19,8 @@ import com.dam.proyectotfc.DatosPersonaActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Usuario;
 import com.dam.proyectotfc.utils.UsuariosAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +40,8 @@ public class BuscarPersonasFragment extends Fragment implements View.OnClickList
     private RecyclerView rv;
     private Button btnBuscar;
     private EditText etUsuraio;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser usuarioActual;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -84,7 +88,12 @@ public class BuscarPersonasFragment extends Fragment implements View.OnClickList
                     listaUsuarios.clear();
                     for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                         Usuario usuario = snapshot.getValue(Usuario.class);
-                        listaUsuarios.add(usuario);
+                        firebaseAuth = FirebaseAuth.getInstance();
+                        usuarioActual = firebaseAuth.getCurrentUser();
+                        if(!usuario.getEmail().equals(usuarioActual.getEmail())) {
+                            listaUsuarios.add(usuario);
+                        }
+
                     }
 
                     adapter.notifyDataSetChanged();
