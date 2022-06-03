@@ -109,7 +109,7 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
                 for (DataSnapshot snapshot: datasnapshot.getChildren()) {
                     Usuario usuario = snapshot.getValue(Usuario.class);
                     if(usuario.getEmail().equals(emailUsuario)) {
-                        juegosCom = usuario.getJuegosCom();
+                        //juegosCom = usuario.getJuegosCom();
                     }
                 }
             }
