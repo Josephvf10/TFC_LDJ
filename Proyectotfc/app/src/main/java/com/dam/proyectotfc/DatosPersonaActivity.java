@@ -121,7 +121,7 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void cargarRVCom() {
-        adapterCom = new JuegosAdapter(juegosCom);
+        //luego quitar al hacer pushadapterCom = new JuegosAdapter(juegosCom);
         adapterCom.setListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

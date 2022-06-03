@@ -2,10 +2,13 @@
 package com.dam.proyectotfc.model;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class JuegoDetalles {
+public class JuegoDetalles implements Parcelable {
 
     @SerializedName("error")
     @Expose
@@ -31,6 +34,48 @@ public class JuegoDetalles {
     @SerializedName("version")
     @Expose
     private String version;
+
+    protected JuegoDetalles(Parcel in) {
+        error = in.readString();
+        if (in.readByte() == 0) {
+            limit = null;
+        } else {
+            limit = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            offset = null;
+        } else {
+            offset = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            numberOfPageResults = null;
+        } else {
+            numberOfPageResults = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            numberOfTotalResults = null;
+        } else {
+            numberOfTotalResults = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            statusCode = null;
+        } else {
+            statusCode = in.readInt();
+        }
+        version = in.readString();
+    }
+
+    public static final Creator<JuegoDetalles> CREATOR = new Creator<JuegoDetalles>() {
+        @Override
+        public JuegoDetalles createFromParcel(Parcel in) {
+            return new JuegoDetalles(in);
+        }
+
+        @Override
+        public JuegoDetalles[] newArray(int size) {
+            return new JuegoDetalles[size];
+        }
+    };
 
     public String getError() {
         return error;
@@ -96,4 +141,44 @@ public class JuegoDetalles {
         this.version = version;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(error);
+        if (limit == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(limit);
+        }
+        if (offset == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(offset);
+        }
+        if (numberOfPageResults == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(numberOfPageResults);
+        }
+        if (numberOfTotalResults == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(numberOfTotalResults);
+        }
+        if (statusCode == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(statusCode);
+        }
+        parcel.writeString(version);
+    }
 }

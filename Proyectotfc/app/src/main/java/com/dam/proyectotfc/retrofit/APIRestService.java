@@ -1,6 +1,7 @@
 package com.dam.proyectotfc.retrofit;
 
 import com.dam.proyectotfc.model.JuegoDetalles;
+import com.dam.proyectotfc.model.JuegosEstado;
 import com.dam.proyectotfc.model.ResultsBusqueda;
 import com.dam.proyectotfc.model.ResultsDetalles;
 
@@ -16,6 +17,7 @@ public interface APIRestService {
     public static final String FORMAT = "json";
     public static final String RESOURCES = "game";
     public static final String FIELD_LIST = "description,genres,image,name,platforms";
+    public static final String FILTER = "id:";
     @Headers("content-type: application/json")
     @GET("search/")
     Call<ResultsBusqueda> getJuegos(@Query("api_key") String key, @Query("format")String format,
@@ -23,4 +25,8 @@ public interface APIRestService {
     @GET("game/{guid}/")
     Call<JuegoDetalles> getInfo(@Path("guid")String guid, @Query("api_key") String key,
                                 @Query("field_list")String field_list, @Query("format")String format);
+
+    @GET("games")
+    Call<JuegosEstado> getJuegosEstado(@Query("api_key") String key, @Query("format")String format,
+                                       @Query("filter")String filter);
 }

@@ -51,13 +51,59 @@
             android:src="@drawable/profile"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llEstadoJuegos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/llPerfil"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnJuegosJugados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_juegos_jugados"
+                android:layout_weight="1.5"
+                />
+            <Button
+                android:id="@+id/btnJuegosCompletados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_juegos_completados"
+                android:layout_weight="1.2"
+                android:layout_marginLeft="30dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnJuegosMedias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_juegos_medias"
+                android:layout_weight="1.5"
+                />
+            <Button
+                android:id="@+id/btnJuegosOlvidados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_juegos_olvidados"
+                android:layout_weight="1.2"
+                android:layout_marginLeft="30dp"/>
+        </LinearLayout>
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margen"
         android:text="@string/btn_cerrar_sesion"
-        app:layout_constraintTop_toBottomOf="@id/llPerfil"
+        app:layout_constraintTop_toBottomOf="@id/llEstadoJuegos"
         android:background="@drawable/button_desing"
 
         />

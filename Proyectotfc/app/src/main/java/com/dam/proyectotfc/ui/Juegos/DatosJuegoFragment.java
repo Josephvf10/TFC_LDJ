@@ -30,6 +30,7 @@ import com.dam.proyectotfc.model.ResultsDetalles;
 import com.dam.proyectotfc.model.Usuario;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
+import com.dam.proyectotfc.ui.Perfil.EstadoJuegoFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,6 +58,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     TextView tvGen;
     TextView tvPlat;
     String juegoGuid;
+    Integer juegoId;
     FloatingActionButton btnEstadoJuego;
     String genero = "";
     String plataforma = "";
@@ -85,6 +87,7 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
         JuegosBusqueda info = bundle.getParcelable(JuegosInfoFragment.CLAVE_JUEGO);
 
         juegoGuid = info.getGuid();
+        juegoId = info.getId();
 
         tvNombre = v.findViewById(R.id.tvNombreJuegoDetalle);
         tvDes = v.findViewById(R.id.tvDescripcionJuegoDetalle);
@@ -177,13 +180,13 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     private void validar() {
         String id = fUser.getUid();
         if (rdbJug.isChecked()) {
-            dbRef.child(id).child("listaJugados").child(juegoD.getName()).setValue(juegoGuid);
+            dbRef.child(id).child("listaJugados").child(juegoD.getName()).setValue(juegoId);
         } else if (rdbCom.isChecked()) {
-            dbRef.child(id).child("listaCompletados").child(juegoD.getName()).setValue(juegoGuid);
+            dbRef.child(id).child("listaCompletados").child(juegoD.getName()).setValue(juegoId);
         } else if (rdbAba.isChecked()) {
-            dbRef.child(id).child("listaMedias").child(juegoD.getName()).setValue(juegoGuid);
+            dbRef.child(id).child("listaMedias").child(juegoD.getName()).setValue(juegoId);
         } else if (rdbOlv.isChecked()) {
-            dbRef.child(id).child("listaOlvidados").child(juegoD.getName()).setValue(juegoGuid);
+            dbRef.child(id).child("listaOlvidados").child(juegoD.getName()).setValue(juegoId);
         }
         Toast.makeText(getContext(), getString(R.string.msj_juego_est), Toast.LENGTH_LONG).show();
     }

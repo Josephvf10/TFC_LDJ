@@ -59,4 +59,9 @@
     <string name="txt_tv_jugadoss">Juegos completados</string>
     <string name="txt_tv_medias">Juegos a medias</string>
     <string name="txt_tv_olivdado">Juegos abandonados</string>
+    <string name="btn_juegos_jugados">Juegos Jugados</string>
+    <string name="btn_juegos_completados">Juegos Completados</string>
+    <string name="btn_juegos_medias">Juegos a medias</string>
+    <string name="btn_juegos_olvidados">Juegos olvidados</string>
+    <string name="msj_juego_est_val">Esta lista no tiene juegos</string>
 </resources>
