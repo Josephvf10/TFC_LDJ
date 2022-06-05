@@ -22,4 +22,9 @@
         android:name="com.dam.proyectotfc.ui.BuscarPersonas.BuscarPersonasFragment"
         android:label="@string/title_buscar_personas"
         tools:layout="@layout/fragment_buscar_personas" />
+    <fragment
+        android:id="@+id/navigation_opciones"
+        android:name="com.dam.proyectotfc.ui.opciones.OpcionesFragment"
+        android:label="@string/title_opciones"
+        tools:layout="@layout/fragment_opciones"/>
 </navigation>

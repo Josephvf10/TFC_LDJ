@@ -76,11 +76,11 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void datosRegistro() {
-        String nombre = etNomR.getText().toString();
-        String email = etEmailR.getText().toString();
-        String telefono = etTelefonoR.getText().toString();
-        String contrasena = etContrasenaR.getText().toString();
-        String contrasenaRep = etContrasenaRepR.getText().toString();
+        String nombre = etNomR.getText().toString().trim();
+        String email = etEmailR.getText().toString().trim();
+        String telefono = etTelefonoR.getText().toString().trim();
+        String contrasena = etContrasenaR.getText().toString().trim();
+        String contrasenaRep = etContrasenaRepR.getText().toString().trim();
 
         if (!nombre.isEmpty() & !email.isEmpty() & !telefono.isEmpty() & !contrasena.isEmpty()
                 & !contrasena.isEmpty()) {

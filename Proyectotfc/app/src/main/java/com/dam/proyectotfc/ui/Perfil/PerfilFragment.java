@@ -31,7 +31,6 @@ public class PerfilFragment extends Fragment
 implements View.OnClickListener{
 
     public static final String CLAVE_LISTA = "ESTADO";
-    Button btnCerrar;
     Button btnJuegosJugados;
     Button btnJuegosCompletos;
     Button btnJuegosMedias;
@@ -45,7 +44,7 @@ implements View.OnClickListener{
 
         View v = inflater.inflate(R.layout.fragment_perfil,container,false);
 
-        btnCerrar  = v.findViewById(R.id.btnCerrarSesion);
+
         btnJuegosJugados  = v.findViewById(R.id.btnJuegosJugados);
         btnJuegosCompletos  = v.findViewById(R.id.btnJuegosCompletados);
         btnJuegosMedias  = v.findViewById(R.id.btnJuegosMedias);
@@ -54,7 +53,6 @@ implements View.OnClickListener{
         mAuth = FirebaseAuth.getInstance();
         mDataBase = FirebaseDatabase.getInstance().getReference();
 
-        btnCerrar.setOnClickListener(this);
         btnJuegosJugados.setOnClickListener(this);
         btnJuegosCompletos.setOnClickListener(this);
         btnJuegosMedias.setOnClickListener(this);
@@ -89,11 +87,7 @@ implements View.OnClickListener{
      */
     @Override
     public void onClick(View view) {
-        if(view.equals(btnCerrar)){
-            mAuth.signOut();
-            Intent i = new Intent(getContext(), LoginActivity.class);
-            startActivity(i);
-        } else if (view.equals(btnJuegosJugados)) {
+        if (view.equals(btnJuegosJugados)) {
             String jugado = "j";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();

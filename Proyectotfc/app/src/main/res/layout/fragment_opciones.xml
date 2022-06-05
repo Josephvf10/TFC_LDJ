@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.opciones.OpcionesFragment">
+
+    <FrameLayout
+        android:id="@+id/flModificar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/llOpciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/tvEliminarCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/tv_eliminar_cuenta"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/browser_actions_bg_grey"/>
+        <TextView
+            android:id="@+id/tvModificarCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/tv_modificar_cuenta"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/browser_actions_bg_grey"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="@string/btn_cerrar_sesion"
+            android:background="@drawable/button_desing"
+
+            />
+    </LinearLayout>
+
+
+</FrameLayout>

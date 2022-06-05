@@ -15,5 +15,9 @@
         android:id="@+id/navigation_buscar_personas"
         android:icon="@drawable/personas"
         android:title="@string/title_buscar_personas" />
+    <item
+        android:id="@+id/navigation_opciones"
+        android:icon="@drawable/personas"
+        android:title="@string/title_opciones"/>
 
 </menu>

@@ -15,8 +15,6 @@ import com.dam.proyectotfc.R;
 
 public class JuegosFragment extends Fragment {
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_juegos, container, false);

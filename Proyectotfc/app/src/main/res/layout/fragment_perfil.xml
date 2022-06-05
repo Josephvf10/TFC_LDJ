@@ -106,15 +106,5 @@
                 android:layout_marginLeft="30dp"/>
         </LinearLayout>
     </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnCerrarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margen"
-        android:text="@string/btn_cerrar_sesion"
-        app:layout_constraintTop_toBottomOf="@id/llEstadoJuegos"
-        android:background="@drawable/button_desing"
-
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".ModificarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tvModCuentaNom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_mod_cuenta_nom"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/browser_actions_bg_grey"
+            />
+
+        <EditText
+            android:id="@+id/etModCuentaNom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_et_mod_cuenta_nom"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"
+            />
+
+        <TextView
+            android:id="@+id/tvModCuentaTelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_mod_cuenta_telf"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/browser_actions_bg_grey"/>
+
+        <EditText
+            android:id="@+id/etModCuentaTelf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_et_mod_cuenta_telf"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirmarMod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_confirmar_mod"
+            android:background="@drawable/button_desing"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

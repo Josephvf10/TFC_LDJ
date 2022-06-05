@@ -64,4 +64,20 @@
     <string name="btn_juegos_medias">Juegos a medias</string>
     <string name="btn_juegos_olvidados">Juegos olvidados</string>
     <string name="msj_juego_est_val">Esta lista no tiene juegos</string>
+    <string name="title_opciones">Opciones</string>
+    <string name="tv_modo_oscuro">Tema Claro</string>
+    <string name="tv_eliminar_cuenta">Eliminar Cuenta</string>
+    <string name="tv_confirmar">¿Estas seguro de querer eliminar tu cuenta? No podras recuperar tu cuenta</string>
+    <string name="dialog_si_elim">Sí</string>
+    <string name="dialog_no_elim">No</string>
+    <string name="title_eliminar_cuenta">Eliminar Cuenta</string>
+    <string name="tv_modificar_cuenta">Modificar Cuenta</string>
+    <string name="title_modificar_cuenta">Modificar Cuenta</string>
+    <string name="dialog_si_mod">Sí</string>
+    <string name="dialog_no_mod">No</string>
+    <string name="tv_mod_cuenta_nom">Escriba el nombre por el que quiere modificar su actual nombre</string>
+    <string name="hint_et_mod_cuenta_nom">Escriba su nuevo nombre</string>
+    <string name="tv_mod_cuenta_telf">Escriba el telefono por el que quiere modificar su actual telefono</string>
+    <string name="hint_et_mod_cuenta_telf">Escriba su nuevo telefono</string>
+    <string name="btn_confirmar_mod">Confirmar Modificaciones</string>
 </resources>
