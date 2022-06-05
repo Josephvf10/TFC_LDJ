@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen"
                 android:text="@string/tv_genero_juego_detalle"
-                android:textColor="@color/black"
+                android:textColor="#838383"
                 android:textAlignment="center"
                 android:textSize="@dimen/tam_txt_reg"
                 android:fontFamily="@font/righteous_normal"/>
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen"
                 android:text="@string/tv_plataformas_juego_detalle"
-                android:textColor="@color/black"
+                android:textColor="#838383"
                 android:textAlignment="center"
                 android:textSize="@dimen/tam_txt_reg"
                 android:fontFamily="@font/righteous_normal"/>
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen"
-                android:textColor="@color/black"
+                android:textColor="#838383"
                 android:textAlignment="center"
                 android:textSize="@dimen/tam_txt_reg"
                 android:fontFamily="@font/righteous_normal"/>
@@ -70,8 +70,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
+                android:layout_margin="20dp"
+                android:backgroundTint="#F8E91A"
                 android:contentDescription="@string/estado_del_juego"
-                android:layout_margin="20dp" />
+                android:src="@drawable/ic_baseline_add_24"
+                android:tint="#F8E91A" />
         </LinearLayout>
 
 

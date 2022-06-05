@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@color/black"
     android:padding="@dimen/margen"
     tools:context=".RegistroActivity">
 
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/logo_prueba"/>
+        android:src="@drawable/logo_gamer_self"/>
 
     <TextView
         android:id="@+id/tvRegTxt"
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/ivRegIcon"
         android:text="@string/tv_reg_txt"
+        android:textColor="#f8e91a"
         android:gravity="center"
         android:layout_marginTop="@dimen/top_txt_reg"
         android:textSize="@dimen/tam_txt_reg"
@@ -46,6 +47,8 @@
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_nombre"
             android:layout_marginTop="@dimen/margenR"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"
             android:background="@drawable/et_desing"
             android:inputType="textPersonName|textCapWords"
             />
@@ -57,6 +60,8 @@
             android:fontFamily="@font/sanfrancis"
             android:hint="@string/et_hint_correo"
             android:layout_marginTop="@dimen/margenR"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"
             android:background="@drawable/et_desing"
             android:inputType="textEmailAddress"
             />
@@ -66,6 +71,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"
             android:hint="@string/et_hint_telefono"
             android:layout_marginTop="@dimen/margenR"
             android:background="@drawable/et_desing"
@@ -77,6 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"
             android:hint="@string/et_hint_contraseña"
             android:layout_marginTop="@dimen/margenR"
             android:background="@drawable/et_desing"
@@ -88,6 +97,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sanfrancis"
+            android:textColorHint="@color/browser_actions_bg_grey"
+            android:textColor="@color/browser_actions_bg_grey"
             android:hint="@string/et_hint_contraseña_rep"
             android:layout_marginTop="@dimen/margenR"
             android:background="@drawable/et_desing"

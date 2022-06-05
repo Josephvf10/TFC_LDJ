@@ -15,9 +15,9 @@
     </style>
     
     <style name="navigation">
-        <item name="android:background">#677F8E</item>
-        <item name="itemIconTint">@color/azulOscuro</item>
-        <item name="itemTextColor">@color/azulOscuro</item>
+        <item name="android:background">"#222222"</item>
+        <item name="itemIconTint">#f8e91a</item>
+        <item name="itemTextColor">#f8e91a</item>
     </style>
 
 
