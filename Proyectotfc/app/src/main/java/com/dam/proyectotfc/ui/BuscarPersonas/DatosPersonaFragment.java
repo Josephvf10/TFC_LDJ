@@ -96,6 +96,7 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosCompletos)) {
              String completado = "c";
@@ -107,6 +108,7 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosMedias)) {
             String medias = "m";
@@ -118,6 +120,7 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosOlvidados)) {
             String olvidado = "o";
@@ -129,6 +132,7 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         }
     }
