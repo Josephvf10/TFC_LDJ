@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ModificarActivity">
+    tools:context=".ModificarActivity"
+    android:padding="@dimen/margen">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +27,18 @@
             android:id="@+id/etModCuentaNom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
             android:hint="@string/hint_et_mod_cuenta_nom"
             android:textColorHint="@color/browser_actions_bg_grey"
             android:textColor="@color/browser_actions_bg_grey"
+            android:background="@drawable/et_desing"
             />
 
         <TextView
             android:id="@+id/tvModCuentaTelf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
             android:text="@string/tv_mod_cuenta_telf"
             android:textStyle="bold"
             android:textSize="16sp"
@@ -45,12 +49,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_et_mod_cuenta_telf"
+            android:layout_marginTop="@dimen/margen"
             android:textColorHint="@color/browser_actions_bg_grey"
-            android:textColor="@color/browser_actions_bg_grey"/>
+            android:textColor="@color/browser_actions_bg_grey"
+            android:background="@drawable/et_desing"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnConfirmarMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
             android:text="@string/btn_confirmar_mod"
             android:background="@drawable/button_desing"/>
     </LinearLayout>
