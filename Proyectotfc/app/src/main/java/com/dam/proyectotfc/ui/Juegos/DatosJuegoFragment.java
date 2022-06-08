@@ -124,10 +124,14 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
                    }else {
                        tvDes.setText(Html.fromHtml(juegoD.getDescription()));
                    }
-                    for (Genre gen: juegoD.getGenres()) {
-                        genero += gen.getName() + "\t";
+                    if (juegoD.getGenres() == null){
+                        tvGen.setText(R.string.no_genero);
+                    }else {
+                        for (Genre gen: juegoD.getGenres()) {
+                            genero += gen.getName() + "\t";
+                        }
+                        tvGen.setText(String.format(getResources().getString(R.string.tv_genero_juego_detalle),genero));
                     }
-                    tvGen.setText(String.format(getResources().getString(R.string.tv_genero_juego_detalle),genero));
                     for (Platform plat: juegoD.getPlatforms()) {
                         plataforma += plat.getName() + ",\t";
                     }

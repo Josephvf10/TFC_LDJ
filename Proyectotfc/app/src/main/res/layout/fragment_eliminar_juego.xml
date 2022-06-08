@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.Juegos.DatosJuegoFragment">
+    android:layout_height="match_parent"
+    tools:context=".ui.Perfil.EliminarJuegoFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/llJuegoDetalle"
+            android:id="@+id/llJuegoEliminar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="100dp">
 
             <TextView
-                android:id="@+id/tvNombreJuegoDetalle"
+                android:id="@+id/tvNombreJuegoEliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -27,7 +27,7 @@
                 android:fontFamily="@font/righteous_normal"/>
 
             <ImageView
-                android:id="@+id/ivPortadaJuegoDetalle"
+                android:id="@+id/ivPortadaJuegoEliminar"
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
@@ -35,7 +35,7 @@
                 android:scaleType="fitXY"
                 android:layout_marginTop="@dimen/margen"/>
             <TextView
-                android:id="@+id/tvGeneroJuegoDetalle"
+                android:id="@+id/tvGeneroJuegoEliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen"
@@ -46,7 +46,7 @@
                 android:fontFamily="@font/righteous_normal"/>
 
             <TextView
-                android:id="@+id/tvPlataformasJuegoDetalle"
+                android:id="@+id/tvPlataformasJuegoEliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen"
@@ -56,7 +56,7 @@
                 android:textSize="@dimen/tam_txt_reg"
                 android:fontFamily="@font/righteous_normal"/>
             <TextView
-                android:id="@+id/tvDescripcionJuegoDetalle"
+                android:id="@+id/tvDescripcionJuegoEliminar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margen"
@@ -66,7 +66,7 @@
                 android:fontFamily="@font/righteous_normal"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabEstadoJuego"
+                android:id="@+id/fabEliminarJuego"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
@@ -78,4 +78,4 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

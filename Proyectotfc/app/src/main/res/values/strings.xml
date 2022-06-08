@@ -38,6 +38,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_descripcion">No hay descripción larga disponible</string>
+    <string name="no_genero">No hay genero disponible</string>
     <string name="estado_del_juego">Estado del juego</string>
     <string name="title_estado_juego_dialog">Estado del juego</string>
     <string name="rdb_jugado">Lo he jugado</string>

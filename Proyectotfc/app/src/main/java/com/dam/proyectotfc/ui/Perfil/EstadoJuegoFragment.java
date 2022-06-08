@@ -16,20 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.dam.proyectotfc.R;
-import com.dam.proyectotfc.model.JuegoDetalles;
-import com.dam.proyectotfc.model.JuegosBusqueda;
 import com.dam.proyectotfc.model.JuegosEstado;
 import com.dam.proyectotfc.model.ResultEstado;
-import com.dam.proyectotfc.model.ResultsBusqueda;
-import com.dam.proyectotfc.model.ResultsDetalles;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
-import com.dam.proyectotfc.ui.Juegos.DatosJuegoFragment;
 import com.dam.proyectotfc.ui.Juegos.JuegosInfoFragment;
 import com.dam.proyectotfc.utils.EstadoJuegosAdapter;
-import com.dam.proyectotfc.utils.JuegosAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,12 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,6 +40,8 @@ import retrofit2.Retrofit;
 
 public class EstadoJuegoFragment extends Fragment{
 
+    public static final String CLAVE_JUEGO_E = "ELIMINAR";
+    public static final String CLAVE_ESTADO = "ESTADO_JUEGO";
     TextView tvNomE;
     FirebaseDatabase fdb;
     DatabaseReference rDBJuegos;
@@ -59,11 +49,13 @@ public class EstadoJuegoFragment extends Fragment{
     String idUser;
     FirebaseAuth mAuth;
     ArrayList<Long> juegoP;
+    int contJuegoP;
     ImageView ivPortadaE;
     RecyclerView rvJuegosE;
     LinearLayoutManager llm;
     EstadoJuegosAdapter adapter;
     ArrayList<ResultEstado> juegoRes;
+    String estado;
 
     public EstadoJuegoFragment() {
         // Required empty public constructor
@@ -77,9 +69,10 @@ public class EstadoJuegoFragment extends Fragment{
 
         Bundle bundle = this.getArguments();
 
-        String estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
+        estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
 
         juegoP = new ArrayList<Long>();
+        contJuegoP = 0;
         juegoRes = new ArrayList<ResultEstado>();
 
         mAuth = FirebaseAuth.getInstance();
@@ -95,10 +88,20 @@ public class EstadoJuegoFragment extends Fragment{
         if (estado == "j") {
             rDBJuegos = fdb.getReference("/usuarios/"+idUser+"/listaJugados");
             addValueEventListener();
+        } else if (estado == "c") {
+            rDBJuegos = fdb.getReference("/usuarios/"+idUser+"/listaCompletados");
+            addValueEventListener();
+        }else if (estado == "m") {
+            rDBJuegos = fdb.getReference("/usuarios/"+idUser+"/listaMedias");
+            addValueEventListener();
+        }else if (estado == "o") {
+            rDBJuegos = fdb.getReference("/usuarios/"+idUser+"/listaOlvidados");
+            addValueEventListener();
         }
 
         return v;
     }
+
      private void  addValueEventListener() {
         if (vel == null) {
             vel = new ValueEventListener() {
@@ -122,43 +125,21 @@ public class EstadoJuegoFragment extends Fragment{
                                 if (!response.isSuccessful()) {
                                     Log.i("fallon", "error" + response.code());
                                 } else {
-                                    juegoRes = (ArrayList<ResultEstado>) response.body().getResults();
+                                    contJuegoP++;
+                                    juegoRes.add(((ArrayList<ResultEstado>) response.body().getResults()).get(0));
 
+                                    if (contJuegoP == juegoP.size()){
+                                        cargarJuegos(juegoRes);
+                                    }
                                 }
                             }
+
                             @Override
                             public void onFailure(Call<JuegosEstado> call, Throwable t) {
                                 Log.w("FALLO API", "API falla, porque"  + t.toString());
                             }
                         });
                     }
-                    ExecutorService service = Executors.newFixedThreadPool(juegoP.size());
-
-                    Future<ArrayList<ResultEstado>> future = (Future<ArrayList<ResultEstado>>) service.submit(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(5000);
-                                if (juegoRes.size() > 0) {
-                                    cargarRV(juegoRes);
-                                }  else {
-                                    Toast.makeText(getContext(), getString(R.string.msj_juego_est_val), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-                    try {
-                        future.get();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-
                 }
 
                 @Override
@@ -171,6 +152,13 @@ public class EstadoJuegoFragment extends Fragment{
         rDBJuegos.addValueEventListener(vel);
     }
 
+    private void cargarJuegos(ArrayList<ResultEstado> juegoRes) {
+        if (juegoRes.size() > 0) {
+            cargarRV(juegoRes);
+        }  else {
+            Toast.makeText(getContext(), getString(R.string.msj_juego_est_val), Toast.LENGTH_LONG).show();
+        }
+    }
     private void cargarRV(ArrayList<ResultEstado> juegoRes) {
         adapter = new EstadoJuegosAdapter(juegoRes);
         adapter.setListener(new View.OnClickListener() {
@@ -179,8 +167,9 @@ public class EstadoJuegoFragment extends Fragment{
                 ResultEstado juegoDE = juegoRes.get(rvJuegosE.getChildAdapterPosition(v));
                 Bundle bundle = new Bundle();
                 FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
-                bundle.putParcelable(JuegosInfoFragment.CLAVE_JUEGO, juegoDE);
-                DatosJuegoFragment datos = new DatosJuegoFragment();
+                bundle.putParcelable(CLAVE_JUEGO_E, juegoDE);
+                bundle.putString(CLAVE_ESTADO, estado);
+                EliminarJuegoFragment datos = new EliminarJuegoFragment();
                 datos.setArguments(bundle);
                 ft.replace(getId(),datos);
                 ft.addToBackStack(null);
@@ -189,5 +178,4 @@ public class EstadoJuegoFragment extends Fragment{
         });
         rvJuegosE.setAdapter(adapter);
     }
-
 }

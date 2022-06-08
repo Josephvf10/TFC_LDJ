@@ -99,12 +99,34 @@ implements View.OnClickListener{
             ft.commit();
         } else if (view.equals(btnJuegosCompletos)) {
             String completado = "c";
-
+            Bundle bundle = new Bundle();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            bundle.putString(CLAVE_LISTA, completado);
+            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            datos.setArguments(bundle);
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         } else if (view.equals(btnJuegosMedias)) {
             String medias = "m";
-
+            Bundle bundle = new Bundle();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            bundle.putString(CLAVE_LISTA, medias);
+            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            datos.setArguments(bundle);
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         } else if (view.equals(btnJuegosOlvidados)) {
             String olvidado = "o";
+            Bundle bundle = new Bundle();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            bundle.putString(CLAVE_LISTA, olvidado);
+            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            datos.setArguments(bundle);
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 
