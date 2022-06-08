@@ -12,12 +12,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dam.proyectotfc.DatosPersonaActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Usuario;
+import com.dam.proyectotfc.ui.Perfil.EstadoJuegoFragment;
 import com.dam.proyectotfc.utils.UsuariosAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,9 +58,10 @@ public class BuscarPersonasFragment extends Fragment implements View.OnClickList
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         listaUsuarios = new ArrayList<>();
-        cargarRV();
+
 
         leerUsuarios();
+        cargarRV();
 
         return view;
     }
@@ -70,9 +72,16 @@ public class BuscarPersonasFragment extends Fragment implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Usuario usuario = listaUsuarios.get(rv.getChildAdapterPosition(v));
-                Intent i = new Intent(getContext().getApplicationContext(), DatosPersonaActivity.class);
-                i.putExtra(CLAVE_USUARIO, usuario.getEmail());
-                startActivity(i);
+
+                Bundle bundle = new Bundle();
+                FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+                bundle.putString(CLAVE_USUARIO, usuario.getEmail());
+                DatosPersonaFragment datos = new DatosPersonaFragment();
+                datos.setArguments(bundle);
+                ft.replace(getId(),datos);
+                ft.addToBackStack(null);
+                ft.setReorderingAllowed(true);
+                ft.commit();
             }
         });
         rv.setAdapter(adapter);

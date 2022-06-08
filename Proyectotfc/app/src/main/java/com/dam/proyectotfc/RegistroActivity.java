@@ -132,6 +132,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                         if (task.isSuccessful()) {
                             fUser = fAuth.getCurrentUser();
                             dbRef.child(fUser.getUid()).setValue(user);
+                            dbRef.child(fUser.getUid()).child("id").setValue(fUser.getUid());
                             Toast.makeText(RegistroActivity.this,
                                     getString(R.string.msj_registrado),
                                     Toast.LENGTH_LONG).show();

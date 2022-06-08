@@ -71,13 +71,15 @@ public class EstadoJuegoFragment extends Fragment{
 
         estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
 
+        idUser = bundle.getString(PerfilFragment.CLAVE_USUARIO);
+
         juegoP = new ArrayList<Long>();
         contJuegoP = 0;
         juegoRes = new ArrayList<ResultEstado>();
 
         mAuth = FirebaseAuth.getInstance();
         fdb = FirebaseDatabase.getInstance();
-        idUser = mAuth.getCurrentUser().getUid();
+        //idUser = mAuth.getCurrentUser().getUid();
         tvNomE = v.findViewById(R.id.tvNombreJuegoEstado);
         ivPortadaE = v.findViewById(R.id.ivPortadaJuegoEstado);
 

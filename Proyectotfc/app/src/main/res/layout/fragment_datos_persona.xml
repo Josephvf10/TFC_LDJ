@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DatosPersonaActivity">
+    tools:context=".ui.BuscarPersonas.DatosPersonaActivity">
 
     <TextView
         android:id="@+id/tvNombreDU"
@@ -15,7 +15,7 @@
         android:textStyle="bold"
         android:fontFamily="@font/righteous_normal"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -27,7 +27,7 @@
             android:text="@string/email_du"
             android:fontFamily="@font/righteous_normal"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginTop="@dimen/margen"
             app:layout_constraintTop_toBottomOf="@id/tvNombreDU"
             />
@@ -40,7 +40,7 @@
             android:text="@string/telef_du"
             android:fontFamily="@font/righteous_normal"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginTop="@dimen/margen"
             app:layout_constraintTop_toBottomOf="@id/tvEmailDU"/>
 
