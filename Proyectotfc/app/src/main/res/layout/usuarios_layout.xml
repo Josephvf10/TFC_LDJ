@@ -30,12 +30,6 @@
             android:layout_marginLeft="@dimen/margen"
             />
 
-        <LinearLayout
-            android:id="@+id/llBloqueUsarios2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
 
 
             <TextView
@@ -47,6 +41,7 @@
                 android:layout_marginRight="@dimen/margen"
                 android:layout_marginLeft="@dimen/margen"
                 android:layout_weight="1"
+                android:layout_marginTop="8dp"
                 />
 
 
@@ -59,9 +54,9 @@
                 android:layout_marginRight="@dimen/margen"
                 android:layout_marginLeft="@dimen/margen"
                 android:layout_weight="1"
+                android:layout_marginTop="8dp"
                 />
 
-        </LinearLayout>
 
     </LinearLayout>
 
