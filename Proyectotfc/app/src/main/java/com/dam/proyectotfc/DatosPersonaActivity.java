@@ -38,15 +38,13 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
     public static final String CLAVE_JUEGO = "JUEGO";
 
     TextView tvNombreDU, tvEmailDU, tvTelfDU;
-    RecyclerView rvCompletado, rvJugado, rvMedias, rvOlvidado;
-    Button btnSeguir;
     String emailUsuario;
     LinearLayoutManager llm;
     JuegosAdapter adapterCom, adapterJug, adapterMed, adapterOlv;
     ArrayList<String> juegosCom;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-
+    Button btnJuegosJugados, btnJuegosCompletos, btnJuegosMedias, btnJuegosOlvidados;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +53,10 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
         tvNombreDU = findViewById(R.id.tvNombreDU);
         tvEmailDU = findViewById(R.id.tvEmailDU);
         tvTelfDU = findViewById(R.id.tvTelefDU);
-        rvCompletado = findViewById(R.id.rvCompletadosDU);
-        rvJugado = findViewById(R.id.rvJugadossDU);
-        rvMedias = findViewById(R.id.rvMediasDU);
-        rvOlvidado = findViewById(R.id.rvOlvidadoDU);
-        btnSeguir = findViewById(R.id.btnSeguir);
+        btnJuegosJugados  = findViewById(R.id.btnJuegosJugados2);
+        btnJuegosCompletos  = findViewById(R.id.btnJuegosCompletados2);
+        btnJuegosMedias  = findViewById(R.id.btnJuegosMedias2);
+        btnJuegosOlvidados  = findViewById(R.id.btnJuegosOlvidados2);
 
         Intent i = getIntent();
         Bundle bundle = i.getExtras();
@@ -88,54 +85,17 @@ public class DatosPersonaActivity extends AppCompatActivity implements View.OnCl
         });
 
         llm = new LinearLayoutManager(this);
-        rvCompletado.setLayoutManager(llm);
-
-        leerJuegCom();
-        //cargarRVCom();
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Seguir").child(firebaseUser.getUid()).child("siguiendo");
 
 
     }
 
-    private void leerJuegCom() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        reference.addValueEventListener(new ValueEventListener() {
-            private Object ArrayList;
 
-            @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                for (DataSnapshot snapshot: datasnapshot.getChildren()) {
-                    Usuario usuario = snapshot.getValue(Usuario.class);
-                    if(usuario.getEmail().equals(emailUsuario)) {
-                        //juegosCom = usuario.getJuegosCom();
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(),
-                        getString(R.string.msg_Error_db),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    /*private void cargarRVCom() {
-        adapterCom = new JuegosAdapter(juegosCom);
-        adapterCom.setListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                
-            }
-        });
-    }*/
 
     @Override
     public void onClick(View view) {
-        if (view.equals(btnSeguir)) {
+        if (view.equals("")) {
 
         } else {
 
