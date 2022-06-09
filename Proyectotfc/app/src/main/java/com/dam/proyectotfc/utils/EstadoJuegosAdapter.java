@@ -19,7 +19,7 @@ import com.dam.proyectotfc.model.ResultsDetalles;
 import java.util.ArrayList;
 
 public class EstadoJuegosAdapter extends RecyclerView.Adapter<EstadoJuegosAdapter.estadoJuegosVH>
-implements View.OnClickListener{
+        implements View.OnClickListener{
     private ArrayList<ResultEstado> datos;
     private View.OnClickListener listener;
 
