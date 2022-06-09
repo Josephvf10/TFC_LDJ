@@ -28,8 +28,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
 
     private static final String TAG = "FALLO GRAVE";
     public static final String CLAVE_JUEGO = "JUEGO";
-    public static final String CLAVE_LISTA = "ESTADO";
-    public static final String CLAVE_USUARIO = "USUARIO";
+    public static final String CLAVE_LISTA2 = "ESTADO2";
+    public static final String CLAVE_USUARIO2 = "USUARIO2";
 
     TextView tvNombreDU, tvEmailDU, tvTelfDU;
     String emailUsuario;
@@ -90,8 +90,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             String jugado = "j";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
-            bundle.putString(CLAVE_LISTA, jugado);
-            bundle.putString(CLAVE_USUARIO, usuario.getId());
+            bundle.putString(CLAVE_LISTA2, jugado);
+            bundle.putString(CLAVE_USUARIO2, usuario.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
@@ -102,8 +102,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             String completado = "c";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
-            bundle.putString(CLAVE_LISTA, completado);
-            bundle.putString(CLAVE_USUARIO, usuario.getId());
+            bundle.putString(CLAVE_LISTA2, completado);
+            bundle.putString(CLAVE_USUARIO2, usuario.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
@@ -114,8 +114,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             String medias = "m";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
-            bundle.putString(CLAVE_LISTA, medias);
-            bundle.putString(CLAVE_USUARIO, usuario.getId());
+            bundle.putString(CLAVE_LISTA2, medias);
+            bundle.putString(CLAVE_USUARIO2, usuario.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
@@ -126,8 +126,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             String olvidado = "o";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
-            bundle.putString(CLAVE_LISTA, olvidado);
-            bundle.putString(CLAVE_USUARIO, usuario.getId());
+            bundle.putString(CLAVE_LISTA2, olvidado);
+            bundle.putString(CLAVE_USUARIO2, usuario.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);

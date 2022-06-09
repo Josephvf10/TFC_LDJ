@@ -72,13 +72,15 @@ public class EstadoJuegoFragment extends Fragment{
 
         Bundle bundle = this.getArguments();
 
-        if(bundle.containsKey(PerfilFragment.CLAVE_USUARIO)) {
+        if (bundle.containsKey(PerfilFragment.CLAVE_USUARIO)) {
             estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
             idUser = bundle.getString(PerfilFragment.CLAVE_USUARIO);
         } else {
             estado = bundle.getString(DatosPersonaFragment.CLAVE_LISTA2);
             idUser = bundle.getString(DatosPersonaFragment.CLAVE_USUARIO2);
         }
+
+
 
 
         contJuegoP = 0;
