@@ -1,9 +1,11 @@
 package com.dam.proyectotfc.ui.Perfil;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Html;
 import android.util.Log;
@@ -29,6 +31,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -132,15 +138,35 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
         if (estado == "j") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaJugados");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         } else if (estado == "c") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaCompletados");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }else if (estado == "m") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaMedias");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }else if (estado == "o") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaOlvidados");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 
@@ -149,13 +175,14 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
             vel = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Long j;
-                    for (DataSnapshot child : snapshot.getChildren()) {
-                        j = (Long) child.getValue();
-                        if (j.equals(juegoId)) {
-                            dbRef.child(idUser).child("listaJugados").child(juegoE.getName()).removeValue();
-                        }
+                    HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
+                    Set<String> keySet = valoresJuegos.keySet();
+                    ArrayList<String> juegoP = new ArrayList<String>(keySet);
 
+                    for (int i = 0; i < juegoP.size(); i++) {
+                        if (juegoP.get(i).equals(String.valueOf(juegoId))) {
+                            dbRef.child(String.valueOf(juegoId)).removeValue();
+                        }
                     }
                 }
 
@@ -165,5 +192,6 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
                 }
             };
         }
+        dbRef.addValueEventListener(vel);
     }
 }

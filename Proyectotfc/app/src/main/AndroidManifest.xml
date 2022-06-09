@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoTfc" >
         <activity
-            android:name=".EstadoJuegoPersonaActivity"
-            android:exported="false" />
-        <activity
             android:name=".ModificarActivity"
             android:exported="false" />
         <activity

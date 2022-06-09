@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +51,7 @@ public class EstadoJuegoFragment extends Fragment{
     ValueEventListener vel;
     String idUser;
     FirebaseAuth mAuth;
-    ArrayList<Long> juegoP;
+    ArrayList<String> juegoP;
     int contJuegoP;
     ImageView ivPortadaE;
     RecyclerView rvJuegosE;
@@ -78,7 +80,7 @@ public class EstadoJuegoFragment extends Fragment{
             idUser = bundle.getString(DatosPersonaFragment.CLAVE_USUARIO2);
         }
 
-        juegoP = new ArrayList<Long>();
+
         contJuegoP = 0;
         juegoRes = new ArrayList<ResultEstado>();
 
@@ -114,12 +116,10 @@ public class EstadoJuegoFragment extends Fragment{
             vel = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Long j;
-                    for (DataSnapshot child : snapshot.getChildren()) {
-                        j = (Long) child.getValue();
-                        juegoP.add(j);
+                    HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
+                    Set<String> keySet = valoresJuegos.keySet();
+                    juegoP = new ArrayList<String>(keySet);
 
-                    }
                     Retrofit r = RetrofitClient.getClient(APIRestService.BASE_URL);
                     APIRestService ars = r.create(APIRestService.class);
 
