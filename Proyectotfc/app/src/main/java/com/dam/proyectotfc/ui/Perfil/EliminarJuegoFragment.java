@@ -146,12 +146,27 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
         } else if (estado == "c") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaCompletados");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }else if (estado == "m") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaMedias");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }else if (estado == "o") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaOlvidados");
             addValueEventListener();
+            FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+            PerfilFragment datos = new PerfilFragment();
+            ft.replace(getId(),datos);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 
