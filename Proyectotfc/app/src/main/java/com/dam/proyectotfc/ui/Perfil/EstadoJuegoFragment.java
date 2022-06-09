@@ -21,6 +21,7 @@ import com.dam.proyectotfc.model.JuegosEstado;
 import com.dam.proyectotfc.model.ResultEstado;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
+import com.dam.proyectotfc.ui.BuscarPersonas.DatosPersonaFragment;
 import com.dam.proyectotfc.ui.Juegos.JuegosInfoFragment;
 import com.dam.proyectotfc.utils.EstadoJuegosAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,15 +70,19 @@ public class EstadoJuegoFragment extends Fragment{
 
         Bundle bundle = this.getArguments();
 
-        estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
-
-        idUser = bundle.getString(PerfilFragment.CLAVE_USUARIO);
+        if(bundle.containsKey(PerfilFragment.CLAVE_USUARIO)) {
+            estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
+            idUser = bundle.getString(PerfilFragment.CLAVE_USUARIO);
+        } else {
+            estado = bundle.getString(DatosPersonaFragment.CLAVE_LISTA2);
+            idUser = bundle.getString(DatosPersonaFragment.CLAVE_USUARIO2);
+        }
 
         juegoP = new ArrayList<Long>();
         contJuegoP = 0;
         juegoRes = new ArrayList<ResultEstado>();
 
-        mAuth = FirebaseAuth.getInstance();
+
         fdb = FirebaseDatabase.getInstance();
         //idUser = mAuth.getCurrentUser().getUid();
         tvNomE = v.findViewById(R.id.tvNombreJuegoEstado);
