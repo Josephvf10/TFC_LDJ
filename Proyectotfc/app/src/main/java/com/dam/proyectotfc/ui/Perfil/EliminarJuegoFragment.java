@@ -85,7 +85,6 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
         btnEliminarJuego = v.findViewById(R.id.fabEliminarJuego);
         btnEliminarJuego.setOnClickListener(this);
 
-
         fdb = FirebaseDatabase.getInstance();
         dbRef = fdb.getReference("usuarios");
         fAuth = FirebaseAuth.getInstance();
