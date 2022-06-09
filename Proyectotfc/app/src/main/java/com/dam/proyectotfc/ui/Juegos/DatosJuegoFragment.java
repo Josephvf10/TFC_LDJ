@@ -184,13 +184,13 @@ public class DatosJuegoFragment extends Fragment implements View.OnClickListener
     private void validar() {
         String id = fUser.getUid();
         if (rdbJug.isChecked()) {
-            dbRef.child(id).child("listaJugados").child(juegoD.getName()).setValue(juegoId);
+            dbRef.child(id).child("listaJugados").child(String.valueOf(juegoId)).setValue(juegoD.getName());
         } else if (rdbCom.isChecked()) {
-            dbRef.child(id).child("listaCompletados").child(juegoD.getName()).setValue(juegoId);
+            dbRef.child(id).child("listaCompletados").child(String.valueOf(juegoId)).setValue(juegoD.getName());
         } else if (rdbAba.isChecked()) {
-            dbRef.child(id).child("listaMedias").child(juegoD.getName()).setValue(juegoId);
+            dbRef.child(id).child("listaMedias").child(String.valueOf(juegoId)).setValue(juegoD.getName());
         } else if (rdbOlv.isChecked()) {
-            dbRef.child(id).child("listaOlvidados").child(juegoD.getName()).setValue(juegoId);
+            dbRef.child(id).child("listaOlvidados").child(String.valueOf(juegoId)).setValue(juegoD.getName());
         }
         Toast.makeText(getContext(), getString(R.string.msj_juego_est), Toast.LENGTH_LONG).show();
     }
