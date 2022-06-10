@@ -23,6 +23,7 @@ import com.dam.proyectotfc.model.JuegosEstado;
 import com.dam.proyectotfc.model.ResultEstado;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
+import com.dam.proyectotfc.ui.BuscarPersonas.DatosPersonaFragment;
 import com.dam.proyectotfc.utils.EstadoJuegosAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -75,6 +76,9 @@ public class EstadoJuegoFragment extends Fragment{
         if (bundle.containsKey(PerfilFragment.CLAVE_USUARIO)) {
             estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
             idUser = bundle.getString(PerfilFragment.CLAVE_USUARIO);
+        } else {
+            estado = bundle.getString(DatosPersonaFragment.CLAVE_LISTA2);
+            idUser = bundle.getString(DatosPersonaFragment.CLAVE_USUARIO2);
         }
 
         contJuegoP = 0;

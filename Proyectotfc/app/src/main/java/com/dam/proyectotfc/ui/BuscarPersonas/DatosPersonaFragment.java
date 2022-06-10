@@ -33,8 +33,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
 
     TextView tvNombreDU, tvEmailDU, tvTelfDU;
     String emailUsuario;
-    Button btnJuegosJugados, btnJuegosCompletos, btnJuegosMedias, btnJuegosOlvidados;
-    Usuario usuario;
+    Button btnJuegosJugados2, btnJuegosCompletos2, btnJuegosMedias2, btnJuegosOlvidados2;
+    Usuario usuario, usuarioEscrito;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,15 +43,15 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
         tvNombreDU = view.findViewById(R.id.tvNombreDU);
         tvEmailDU = view.findViewById(R.id.tvEmailDU);
         tvTelfDU = view.findViewById(R.id.tvTelefDU);
-        btnJuegosJugados  = view.findViewById(R.id.btnJuegosJugados2);
-        btnJuegosCompletos  = view.findViewById(R.id.btnJuegosCompletados2);
-        btnJuegosMedias  = view.findViewById(R.id.btnJuegosMedias2);
-        btnJuegosOlvidados  = view.findViewById(R.id.btnJuegosOlvidados2);
+        btnJuegosJugados2  = view.findViewById(R.id.btnJuegosJugados2);
+        btnJuegosCompletos2  = view.findViewById(R.id.btnJuegosCompletados2);
+        btnJuegosMedias2  = view.findViewById(R.id.btnJuegosMedias2);
+        btnJuegosOlvidados2  = view.findViewById(R.id.btnJuegosOlvidados2);
 
-        btnJuegosJugados.setOnClickListener(this);
-        btnJuegosCompletos.setOnClickListener(this);
-        btnJuegosMedias.setOnClickListener(this);
-        btnJuegosOlvidados.setOnClickListener(this);
+        btnJuegosJugados2.setOnClickListener(this);
+        btnJuegosCompletos2.setOnClickListener(this);
+        btnJuegosMedias2.setOnClickListener(this);
+        btnJuegosOlvidados2.setOnClickListener(this);
 
         Bundle bundle = this.getArguments();
 
@@ -65,9 +65,10 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                     usuario = snapshot.getValue(Usuario.class);
                     if(usuario.getEmail().equals(emailUsuario)) {
+                        usuarioEscrito = usuario;
                         tvNombreDU.setText(usuario.getNombreCompleto());
-                        //tvEmailDU.setText(String.format(getContext().getString(R.string.email_du), usuario.getEmail()));
-                        //tvTelfDU.setText(String.format(getContext().getString(R.string.telef_du), usuario.getTelefono()));
+                        tvEmailDU.setText(String.format(getContext().getString(R.string.email_du), usuario.getEmail()));
+                        tvTelfDU.setText(String.format(getContext().getString(R.string.telef_du), usuario.getTelefono()));
                     }
                 }
             }
@@ -86,48 +87,48 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        if (view.equals(btnJuegosJugados)) {
+        if (view.equals(btnJuegosJugados2)) {
             String jugado = "j";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, jugado);
-            bundle.putString(CLAVE_USUARIO2, usuario.getId());
+            bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
             ft.setReorderingAllowed(true);
             ft.commit();
-        } else if (view.equals(btnJuegosCompletos)) {
+        } else if (view.equals(btnJuegosCompletos2)) {
             String completado = "c";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, completado);
-            bundle.putString(CLAVE_USUARIO2, usuario.getId());
+            bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
             ft.setReorderingAllowed(true);
             ft.commit();
-        } else if (view.equals(btnJuegosMedias)) {
+        } else if (view.equals(btnJuegosMedias2)) {
             String medias = "m";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, medias);
-            bundle.putString(CLAVE_USUARIO2, usuario.getId());
+            bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
             ft.setReorderingAllowed(true);
             ft.commit();
-        } else if (view.equals(btnJuegosOlvidados)) {
+        } else if (view.equals(btnJuegosOlvidados2)) {
             String olvidado = "o";
             Bundle bundle = new Bundle();
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, olvidado);
-            bundle.putString(CLAVE_USUARIO2, usuario.getId());
+            bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
             EstadoJuegoFragment datos = new EstadoJuegoFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
