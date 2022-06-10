@@ -66,8 +66,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
                     usuario = snapshot.getValue(Usuario.class);
                     if(usuario.getEmail().equals(emailUsuario)) {
                         tvNombreDU.setText(usuario.getNombreCompleto());
-                        tvEmailDU.setText(String.format(getString(R.string.email_du), usuario.getEmail()));
-                        tvTelfDU.setText(String.format(getString(R.string.telef_du), usuario.getTelefono()));
+                        //tvEmailDU.setText(String.format(getContext().getString(R.string.email_du), usuario.getEmail()));
+                        //tvTelfDU.setText(String.format(getContext().getString(R.string.telef_du), usuario.getTelefono()));
                     }
                 }
             }

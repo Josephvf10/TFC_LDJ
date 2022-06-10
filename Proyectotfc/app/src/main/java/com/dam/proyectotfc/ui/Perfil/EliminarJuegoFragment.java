@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dam.proyectotfc.LoginActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Genre;
 import com.dam.proyectotfc.model.JuegoDetalles;
@@ -141,6 +143,7 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
             PerfilFragment datos = new PerfilFragment();
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (estado == "c") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaCompletados");
@@ -149,6 +152,7 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
             PerfilFragment datos = new PerfilFragment();
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         }else if (estado == "m") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaMedias");
@@ -157,6 +161,7 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
             PerfilFragment datos = new PerfilFragment();
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         }else if (estado == "o") {
             dbRef = fdb.getReference("/usuarios/"+idUser+"/listaOlvidados");
@@ -165,6 +170,7 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
             PerfilFragment datos = new PerfilFragment();
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         }
     }
@@ -174,13 +180,17 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
             vel = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
-                    Set<String> keySet = valoresJuegos.keySet();
-                    ArrayList<String> juegoP = new ArrayList<String>(keySet);
+                    if (snapshot.getValue() == null) {
 
-                    for (int i = 0; i < juegoP.size(); i++) {
-                        if (juegoP.get(i).equals(String.valueOf(juegoId))) {
-                            dbRef.child(String.valueOf(juegoId)).removeValue();
+                    }else {
+                        HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
+                        Set<String> keySet = valoresJuegos.keySet();
+                        ArrayList<String> juegoP = new ArrayList<String>(keySet);
+
+                        for (int i = 0; i < juegoP.size(); i++) {
+                            if (juegoP.get(i).equals(String.valueOf(juegoId))) {
+                                dbRef.child(String.valueOf(juegoId)).removeValue();
+                            }
                         }
                     }
                 }

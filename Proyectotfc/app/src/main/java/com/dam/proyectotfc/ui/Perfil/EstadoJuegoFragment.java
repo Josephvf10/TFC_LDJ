@@ -1,5 +1,6 @@
 package com.dam.proyectotfc.ui.Perfil;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,13 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dam.proyectotfc.LoginActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.JuegosEstado;
 import com.dam.proyectotfc.model.ResultEstado;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
-import com.dam.proyectotfc.ui.BuscarPersonas.DatosPersonaFragment;
-import com.dam.proyectotfc.ui.Juegos.JuegosInfoFragment;
 import com.dam.proyectotfc.utils.EstadoJuegosAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -75,18 +75,12 @@ public class EstadoJuegoFragment extends Fragment{
         if(bundle.containsKey(PerfilFragment.CLAVE_USUARIO)) {
             estado = bundle.getString(PerfilFragment.CLAVE_LISTA);
             idUser = bundle.getString(PerfilFragment.CLAVE_USUARIO);
-        } else {
-            estado = bundle.getString(DatosPersonaFragment.CLAVE_LISTA2);
-            idUser = bundle.getString(DatosPersonaFragment.CLAVE_USUARIO2);
         }
-
 
         contJuegoP = 0;
         juegoRes = new ArrayList<ResultEstado>();
 
-
         fdb = FirebaseDatabase.getInstance();
-        //idUser = mAuth.getCurrentUser().getUid();
         tvNomE = v.findViewById(R.id.tvNombreJuegoEstado);
         ivPortadaE = v.findViewById(R.id.ivPortadaJuegoEstado);
 
@@ -116,36 +110,40 @@ public class EstadoJuegoFragment extends Fragment{
             vel = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
-                    Set<String> keySet = valoresJuegos.keySet();
-                    juegoP = new ArrayList<String>(keySet);
+                    if (snapshot.getValue() == null) {
 
-                    Retrofit r = RetrofitClient.getClient(APIRestService.BASE_URL);
-                    APIRestService ars = r.create(APIRestService.class);
+                    }  else {
+                        HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
+                        Set<String> keySet = valoresJuegos.keySet();
+                        juegoP = new ArrayList<String>(keySet);
 
-                    for (int i = 0; i < juegoP.size(); i++) {
-                        Call<JuegosEstado> call = ars.getJuegosEstado(APIRestService.KEY, APIRestService.FORMAT,
-                                APIRestService.FILTER + juegoP.get(i));
-                        call.enqueue(new Callback<JuegosEstado>() {
-                            @Override
-                            public void onResponse(Call<JuegosEstado> call, Response<JuegosEstado> response) {
-                                if (!response.isSuccessful()) {
-                                    Log.i("fallon", "error" + response.code());
-                                } else {
-                                    contJuegoP++;
-                                    juegoRes.add(((ArrayList<ResultEstado>) response.body().getResults()).get(0));
+                        Retrofit r = RetrofitClient.getClient(APIRestService.BASE_URL);
+                        APIRestService ars = r.create(APIRestService.class);
 
-                                    if (contJuegoP == juegoP.size()){
-                                        cargarJuegos(juegoRes);
+                        for (int i = 0; i < juegoP.size(); i++) {
+                            Call<JuegosEstado> call = ars.getJuegosEstado(APIRestService.KEY, APIRestService.FORMAT,
+                                    APIRestService.FILTER + juegoP.get(i));
+                            call.enqueue(new Callback<JuegosEstado>() {
+                                @Override
+                                public void onResponse(Call<JuegosEstado> call, Response<JuegosEstado> response) {
+                                    if (!response.isSuccessful()) {
+                                        Log.i("fallon", "error" + response.code());
+                                    } else {
+                                        contJuegoP++;
+                                        juegoRes.add(((ArrayList<ResultEstado>) response.body().getResults()).get(0));
+
+                                        if (contJuegoP == juegoP.size()){
+                                            cargarJuegos(juegoRes);
+                                        }
                                     }
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call<JuegosEstado> call, Throwable t) {
-                                Log.w("FALLO API", "API falla, porque"  + t.toString());
-                            }
-                        });
+                                @Override
+                                public void onFailure(Call<JuegosEstado> call, Throwable t) {
+                                    Log.w("FALLO API", "API falla, porque"  + t.toString());
+                                }
+                            });
+                        }
                     }
                 }
 
@@ -180,6 +178,7 @@ public class EstadoJuegoFragment extends Fragment{
                 datos.setArguments(bundle);
                 ft.replace(getId(),datos);
                 ft.addToBackStack(null);
+                ft.setReorderingAllowed(true);
                 ft.commit();
             }
         });

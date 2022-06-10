@@ -81,4 +81,5 @@
     <string name="tv_mod_cuenta_telf">Escriba el telefono por el que quiere modificar su actual telefono</string>
     <string name="hint_et_mod_cuenta_telf">Escriba su nuevo telefono</string>
     <string name="btn_confirmar_mod">Confirmar Modificaciones</string>
+    <string name="msj_no_juego">No hay juegos en la lista</string>
 </resources>
