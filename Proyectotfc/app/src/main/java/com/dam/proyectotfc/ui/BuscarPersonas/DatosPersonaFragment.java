@@ -59,7 +59,6 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuarios");
         reference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("StringFormatMatches")
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
@@ -67,8 +66,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
                     if(usuario.getEmail().equals(emailUsuario)) {
                         usuarioEscrito = usuario;
                         tvNombreDU.setText(usuario.getNombreCompleto());
-                        tvEmailDU.setText(String.format(getContext().getString(R.string.email_du), usuario.getEmail()));
-                        tvTelfDU.setText(String.format(getContext().getString(R.string.telef_du), usuario.getTelefono()));
+                        tvEmailDU.setText(usuario.getEmail());
+                        tvTelfDU.setText(usuario.getTelefono());
                     }
                 }
             }
@@ -97,7 +96,6 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
-            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosCompletos2)) {
             String completado = "c";
@@ -109,7 +107,6 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
-            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosMedias2)) {
             String medias = "m";
@@ -121,7 +118,6 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
-            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosOlvidados2)) {
             String olvidado = "o";
@@ -133,7 +129,6 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
-            ft.setReorderingAllowed(true);
             ft.commit();
         }
     }
