@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.dam.proyectotfc.LoginActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.JuegosBusqueda;
+import com.dam.proyectotfc.model.Usuario;
+import com.dam.proyectotfc.ui.BuscarPersonas.BuscarPersonasFragment;
 import com.dam.proyectotfc.ui.Juegos.DatosJuegoFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -59,12 +61,12 @@ implements View.OnClickListener{
         btnJuegosMedias.setOnClickListener(this);
         btnJuegosOlvidados.setOnClickListener(this);
 
-        //userInfo();
+        userInfo();
 
         return v;
     }
 
-    /*
+
         private void userInfo(){
             String id= mAuth.getCurrentUser().getUid();
             mDataBase.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
@@ -73,7 +75,7 @@ implements View.OnClickListener{
                     if(snapshot.exists()){
                         String nombre = snapshot.child("nombreCompleto").getValue().toString();
 
-                        tvNom.setText(nombre);
+                        tvNom.setText("Bienvenido "+nombre);
                     }
                 }
 
@@ -85,7 +87,7 @@ implements View.OnClickListener{
         }
 
 
-     */
+
     @Override
     public void onClick(View view) {
         if (view.equals(btnJuegosJugados)) {
