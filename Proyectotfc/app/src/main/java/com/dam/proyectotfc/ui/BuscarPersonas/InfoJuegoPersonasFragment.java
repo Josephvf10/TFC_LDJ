@@ -1,15 +1,8 @@
-package com.dam.proyectotfc.ui.Perfil;
+package com.dam.proyectotfc.ui.BuscarPersonas;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
-import com.dam.proyectotfc.LoginActivity;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Genre;
 import com.dam.proyectotfc.model.JuegoDetalles;
@@ -29,6 +24,8 @@ import com.dam.proyectotfc.model.ResultEstado;
 import com.dam.proyectotfc.model.ResultsDetalles;
 import com.dam.proyectotfc.retrofit.APIRestService;
 import com.dam.proyectotfc.retrofit.RetrofitClient;
+import com.dam.proyectotfc.ui.Perfil.EstadoJuegoFragment;
+import com.dam.proyectotfc.ui.Perfil.PerfilFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +44,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 
-public class EliminarJuegoFragment extends Fragment implements View.OnClickListener {
+public class InfoJuegoPersonasFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "FALLO";
     TextView tvNombre;
@@ -138,80 +135,12 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        dbRef.removeEventListener(vel);
-    }
-
-    @Override
     public void onClick(View view) {
-        if (estado == "j") {
-            dbRef = fdb.getReference("/usuarios/"+idUser+"/listaJugados");
-            addValueEventListener();
-        } else if (estado == "c") {
-            dbRef = fdb.getReference("/usuarios/"+idUser+"/listaCompletados");
-            addValueEventListener();
-        }else if (estado == "m") {
-            dbRef = fdb.getReference("/usuarios/"+idUser+"/listaMedias");
-            addValueEventListener();
-        }else if (estado == "o") {
-            dbRef = fdb.getReference("/usuarios/"+idUser+"/listaOlvidados");
-            addValueEventListener();
-        }
-    }
-
-    private void addValueEventListener() {
-        if (vel == null) {
-            vel = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.getValue() == null) {
-
-                    }else {
-                        HashMap<String, String> valoresJuegos = (HashMap<String, String>) snapshot.getValue();
-                        Set<String> keySet = valoresJuegos.keySet();
-                        ArrayList<String> juegoP = new ArrayList<String>(keySet);
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        View viewD = getActivity().getLayoutInflater().inflate(R.layout.dialog_eliminar_layout, null);
-                        builder.setView(viewD);
-                        builder.setTitle(R.string.title_eliminar_juego_dialog);
-                        builder.setPositiveButton(R.string.dialog_ok,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int j) {
-                                        for (int i = 0; i < juegoP.size(); i++) {
-                                            if (juegoP.get(i).equals(String.valueOf(juegoId))) {
-                                                dbRef.child(String.valueOf(juegoId)).removeValue();
-                                                dialog.dismiss();
-                                                FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
-                                                PerfilFragment datos = new PerfilFragment();
-                                                ft.replace(getId(),datos);
-                                                ft.addToBackStack(null);
-                                                ft.setReorderingAllowed(true);
-                                                ft.commit();
-                                            }
-                                        }
-                                    }
-                        });
-
-                        builder.setNegativeButton(R.string.dialog_ok_no,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int i) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                        builder.create().show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            };
-        }
-        dbRef.addValueEventListener(vel);
+        FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
+        BuscarPersonasFragment datos = new BuscarPersonasFragment();
+        ft.replace(getId(),datos);
+        ft.addToBackStack(null);
+        ft.setReorderingAllowed(true);
+        ft.commit();
     }
 }

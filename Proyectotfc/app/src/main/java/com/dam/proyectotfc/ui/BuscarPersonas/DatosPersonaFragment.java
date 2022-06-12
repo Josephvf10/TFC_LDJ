@@ -1,6 +1,8 @@
 package com.dam.proyectotfc.ui.BuscarPersonas;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,16 +20,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.model.Usuario;
 import com.dam.proyectotfc.ui.Perfil.EstadoJuegoFragment;
+import com.dam.proyectotfc.ui.Perfil.PerfilFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
 public class DatosPersonaFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "FALLO GRAVE";
-    public static final String CLAVE_JUEGO = "JUEGO";
     public static final String CLAVE_LISTA2 = "ESTADO2";
     public static final String CLAVE_USUARIO2 = "USUARIO2";
 
@@ -35,6 +41,8 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
     String emailUsuario;
     Button btnJuegosJugados2, btnJuegosCompletos2, btnJuegosMedias2, btnJuegosOlvidados2;
     Usuario usuario, usuarioEscrito;
+    DatabaseReference reference;
+    ValueEventListener vel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,33 +64,12 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
         Bundle bundle = this.getArguments();
 
         emailUsuario = bundle.getString(BuscarPersonasFragment.CLAVE_USUARIO);
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    usuario = snapshot.getValue(Usuario.class);
-                    if(usuario.getEmail().equals(emailUsuario)) {
-                        usuarioEscrito = usuario;
-                        tvNombreDU.setText(usuario.getNombreCompleto());
-                        tvEmailDU.setText(usuario.getEmail());
-                        tvTelfDU.setText(usuario.getTelefono());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), R.string.msg_Error_db, Toast.LENGTH_LONG).show();
-            }
-        });
+        reference = FirebaseDatabase.getInstance().getReference("usuarios");
+        addValueEventListener();
 
         return view;
 
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -92,10 +79,11 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, jugado);
             bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
-            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            EstadoJuegoPersonasFragment datos = new EstadoJuegoPersonasFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosCompletos2)) {
             String completado = "c";
@@ -103,10 +91,11 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, completado);
             bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
-            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            EstadoJuegoPersonasFragment datos = new EstadoJuegoPersonasFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosMedias2)) {
             String medias = "m";
@@ -114,10 +103,11 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, medias);
             bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
-            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            EstadoJuegoPersonasFragment datos = new EstadoJuegoPersonasFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         } else if (view.equals(btnJuegosOlvidados2)) {
             String olvidado = "o";
@@ -125,11 +115,36 @@ public class DatosPersonaFragment extends Fragment implements View.OnClickListen
             FragmentTransaction ft = getParentFragment().getChildFragmentManager().beginTransaction();
             bundle.putString(CLAVE_LISTA2, olvidado);
             bundle.putString(CLAVE_USUARIO2, usuarioEscrito.getId());
-            EstadoJuegoFragment datos = new EstadoJuegoFragment();
+            EstadoJuegoPersonasFragment datos = new EstadoJuegoPersonasFragment();
             datos.setArguments(bundle);
             ft.replace(getId(),datos);
             ft.addToBackStack(null);
+            ft.setReorderingAllowed(true);
             ft.commit();
         }
+    }
+
+    private void addValueEventListener() {
+        if (vel == null) {
+            vel = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                    for (DataSnapshot snapshot : datasnapshot.getChildren()) {
+                        usuario = snapshot.getValue(Usuario.class);
+                        if(usuario.getEmail().equals(emailUsuario)) {
+                            usuarioEscrito = usuario;
+                            tvNombreDU.setText(usuario.getNombreCompleto());
+                            tvEmailDU.setText(usuario.getEmail());
+                            tvTelfDU.setText(usuario.getTelefono());
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getContext(), R.string.msg_Error_db, Toast.LENGTH_LONG).show();
+                }
+            };
+        }
+        reference.addValueEventListener(vel);
     }
 }

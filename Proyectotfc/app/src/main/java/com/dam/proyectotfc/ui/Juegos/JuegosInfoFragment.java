@@ -1,5 +1,6 @@
 package com.dam.proyectotfc.ui.Juegos;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -61,6 +63,8 @@ public class JuegosInfoFragment extends Fragment implements View.OnClickListener
         btnC.setOnClickListener(this);
         etNom = v.findViewById(R.id.etNombreJuego);
 
+
+
         return v;
     }
 
@@ -81,6 +85,7 @@ public class JuegosInfoFragment extends Fragment implements View.OnClickListener
                     } else {
                         ArrayList<JuegosBusqueda> juegosRes = (ArrayList<JuegosBusqueda>) response.body().getResults();
                         cargarRV(juegosRes);
+                        quitarTeclado(view);
                     }
                 }
 
@@ -112,5 +117,10 @@ public class JuegosInfoFragment extends Fragment implements View.OnClickListener
             }
         });
         rvJuegos.setAdapter(adapter);
+    }
+
+    public static void quitarTeclado(View v){
+        InputMethodManager im = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE) ;
+        im.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 }

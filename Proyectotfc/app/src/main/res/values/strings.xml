@@ -82,4 +82,6 @@
     <string name="hint_et_mod_cuenta_telf">Escriba su nuevo telefono</string>
     <string name="btn_confirmar_mod">Confirmar Modificaciones</string>
     <string name="msj_no_juego">No hay juegos en la lista</string>
+    <string name="title_eliminar_juego_dialog">Eliminar juego</string>
+    <string name="tv_elim_juego">¿Seguro que quieres eliminar el juego de la lista?</string>
 </resources>

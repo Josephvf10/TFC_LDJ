@@ -8,6 +8,7 @@
     android:padding="@dimen/margen"
     tools:context=".RegistroActivity">
 
+
     <ImageView
         android:id="@+id/ivRegIcon"
         android:layout_width="@dimen/lados_iv_reg"
