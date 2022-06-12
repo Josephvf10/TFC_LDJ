@@ -41,6 +41,8 @@ implements View.OnClickListener{
     TextView tvNom;
     FirebaseAuth mAuth;
     DatabaseReference mDataBase;
+    DatabaseReference dbRef;
+    ValueEventListener vel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,30 +63,13 @@ implements View.OnClickListener{
         btnJuegosMedias.setOnClickListener(this);
         btnJuegosOlvidados.setOnClickListener(this);
 
-        userInfo();
+        //userInfo();
 
         return v;
     }
 
 
-        private void userInfo(){
-            String id= mAuth.getCurrentUser().getUid();
-            mDataBase.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists()){
-                        String nombre = snapshot.child("nombreCompleto").getValue().toString();
 
-                        tvNom.setText("Bienvenido "+nombre);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
 
 
 
