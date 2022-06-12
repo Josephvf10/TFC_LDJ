@@ -15,11 +15,13 @@
         android:id="@+id/llOpciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical" >
         <TextView
             android:id="@+id/tvEliminarCuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
@@ -34,6 +36,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
+            android:drawableStart="@drawable/update"
+            android:layout_gravity="center"
             android:text="@string/tv_modificar_cuenta"
             android:textStyle="bold"
             android:textSize="16sp"

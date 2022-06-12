@@ -140,7 +140,10 @@ public class EliminarJuegoFragment extends Fragment implements View.OnClickListe
     @Override
     public void onPause() {
         super.onPause();
-        dbRef.removeEventListener(vel);
+        if (vel != null){
+            dbRef.removeEventListener(vel);
+        }
+
     }
 
     @Override

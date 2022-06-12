@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/et_hin_nombre_juego"
+            android:drawableStart="@drawable/lupa"
             android:background="@drawable/et_desing"
             android:textColorHint="@color/white"
             android:textColor="@color/white"/>

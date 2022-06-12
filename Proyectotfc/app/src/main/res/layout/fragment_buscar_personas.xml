@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_et_personas"
             android:layout_weight="1"
+            android:drawableStart="@drawable/lupa"
             android:background="@drawable/et_desing"
             android:textColorHint="@color/white"
             android:textColor="@color/white"

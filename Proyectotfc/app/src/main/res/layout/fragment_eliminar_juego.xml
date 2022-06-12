@@ -73,7 +73,7 @@
                 android:layout_margin="20dp"
                 android:backgroundTint="#F8E91A"
                 android:contentDescription="@string/estado_del_juego"
-                android:src="@drawable/ic_baseline_add_24"
+                android:src="@drawable/delete"
                 android:tint="#F8E91A" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
