@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,19 +22,24 @@ import com.dam.proyectotfc.R;
 import com.dam.proyectotfc.ui.Perfil.PerfilFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class OpcionesFragment extends Fragment implements View.OnClickListener {
 
     TextView tvElimCuenta;
     TextView tvModCuenta;
+    TextView tvNom;
     FirebaseDatabase fdb;
     DatabaseReference dbRef;
     FirebaseAuth fAuth;
     FirebaseUser fUser;
     Button btnCerrar;
+    DatabaseReference mDataBase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,13 +53,36 @@ public class OpcionesFragment extends Fragment implements View.OnClickListener {
         tvModCuenta.setOnClickListener(this);
         btnCerrar  = v.findViewById(R.id.btnCerrarSesion);
         btnCerrar.setOnClickListener(this);
+        tvNom=v.findViewById(R.id.tvNomOpciones);
 
         fdb = FirebaseDatabase.getInstance();
         dbRef = fdb.getReference("usuarios");
         fAuth = FirebaseAuth.getInstance();
         fUser = fAuth.getCurrentUser();
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+
+        userInfo();
 
         return v;
+    }
+
+    private void userInfo() {
+        String id= fAuth.getCurrentUser().getUid();
+        mDataBase.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String nombre = snapshot.child("nombreCompleto").getValue().toString();
+
+                    tvNom.setText(nombre);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override

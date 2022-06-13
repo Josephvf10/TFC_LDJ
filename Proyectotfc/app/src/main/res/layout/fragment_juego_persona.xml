@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Perfil.EliminarJuegoFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llJuegoEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="100dp">
+
+            <TextView
+                android:id="@+id/tvNombreJuegoEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="@dimen/tmTitulo"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:fontFamily="@font/righteous_normal"/>
+
+            <ImageView
+                android:id="@+id/ivPortadaJuegoEliminar"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:layout_marginTop="@dimen/margen"/>
+            <TextView
+                android:id="@+id/tvGeneroJuegoEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margen"
+                android:text="@string/tv_genero_juego_detalle"
+                android:textColor="#838383"
+                android:textAlignment="center"
+                android:textSize="@dimen/tam_txt_reg"
+                android:fontFamily="@font/righteous_normal"/>
+
+            <TextView
+                android:id="@+id/tvPlataformasJuegoEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margen"
+                android:text="@string/tv_plataformas_juego_detalle"
+                android:textColor="#838383"
+                android:textAlignment="center"
+                android:textSize="@dimen/tam_txt_reg"
+                android:fontFamily="@font/righteous_normal"/>
+            <TextView
+                android:id="@+id/tvDescripcionJuegoEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margen"
+                android:textColor="#838383"
+                android:textAlignment="center"
+                android:textSize="@dimen/tam_txt_reg"
+                android:fontFamily="@font/righteous_normal"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabEliminarJuego"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="20dp"
+                android:backgroundTint="#F8E91A"
+                android:contentDescription="@string/estado_del_juego"
+                android:src="@drawable/back"
+                android:tint="#F8E91A" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

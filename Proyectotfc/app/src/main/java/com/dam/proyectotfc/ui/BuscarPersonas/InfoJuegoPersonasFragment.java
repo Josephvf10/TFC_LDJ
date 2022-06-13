@@ -69,7 +69,7 @@ public class InfoJuegoPersonasFragment extends Fragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_eliminar_juego, container, false);
+        View v = inflater.inflate(R.layout.fragment_juego_persona, container, false);
 
         Bundle bundle = this.getArguments();
 

@@ -12,6 +12,31 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:src="@drawable/profile" />
+
+        <TextView
+            android:id="@+id/tvNomOpciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:textColor="@color/browser_actions_bg_grey"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+        />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:id="@+id/llOpciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +50,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:drawableStart="@drawable/eliminar_cuenta"
             android:text="@string/tv_eliminar_cuenta"
             android:textStyle="bold"
             android:textSize="16sp"
