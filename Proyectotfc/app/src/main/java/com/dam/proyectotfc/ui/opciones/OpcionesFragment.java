@@ -34,6 +34,7 @@ public class OpcionesFragment extends Fragment implements View.OnClickListener {
     TextView tvElimCuenta;
     TextView tvModCuenta;
     TextView tvNom;
+    TextView tvNum;
     FirebaseDatabase fdb;
     DatabaseReference dbRef;
     FirebaseAuth fAuth;
@@ -54,6 +55,7 @@ public class OpcionesFragment extends Fragment implements View.OnClickListener {
         btnCerrar  = v.findViewById(R.id.btnCerrarSesion);
         btnCerrar.setOnClickListener(this);
         tvNom=v.findViewById(R.id.tvNomOpciones);
+        tvNum=v.findViewById(R.id.tvNumOpciones);
 
         fdb = FirebaseDatabase.getInstance();
         dbRef = fdb.getReference("usuarios");
@@ -72,9 +74,11 @@ public class OpcionesFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    String nombre = snapshot.child("nombreCompleto").getValue().toString();
+                    String email = snapshot.child("email").getValue().toString();
+                    String num = snapshot.child("telefono").getValue().toString();
 
-                    tvNom.setText(nombre);
+                    tvNom.setText(email);
+                    tvNum.setText(num);
                 }
             }
 
